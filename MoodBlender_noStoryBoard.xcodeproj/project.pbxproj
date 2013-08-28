@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		576CF7CD17CB4E10005D45CD /* RecipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */; };
+		576CF7D717CC96FF005D45CD /* menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7D617CC96FF005D45CD /* menu2.png */; };
+		576CF7D917CCAD34005D45CD /* cocktail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7D817CCAD34005D45CD /* cocktail.plist */; };
+		576CF7DB17CD9D79005D45CD /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DA17CD9D79005D45CD /* background_1.png */; };
+		576CF7DD17CDA09B005D45CD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DC17CDA09B005D45CD /* background.png */; };
+		576CF7E917CDA0D7005D45CD /* Glass1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DE17CDA0D5005D45CD /* Glass1.png */; };
+		576CF7EA17CDA0D7005D45CD /* Glass4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DF17CDA0D5005D45CD /* Glass4.png */; };
+		576CF7EB17CDA0D7005D45CD /* Glass3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E017CDA0D5005D45CD /* Glass3.png */; };
+		576CF7EC17CDA0D7005D45CD /* Glass2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E117CDA0D5005D45CD /* Glass2.png */; };
+		576CF7ED17CDA0D7005D45CD /* background_recipe5.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E217CDA0D5005D45CD /* background_recipe5.png */; };
+		576CF7EE17CDA0D7005D45CD /* background_recipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E317CDA0D6005D45CD /* background_recipe2.png */; };
+		576CF7EF17CDA0D7005D45CD /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E417CDA0D6005D45CD /* background3.png */; };
+		576CF7F017CDA0D7005D45CD /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E517CDA0D6005D45CD /* background2.png */; };
+		576CF7F117CDA0D7005D45CD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E617CDA0D6005D45CD /* background.png */; };
+		576CF7F217CDA0D7005D45CD /* background_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E717CDA0D6005D45CD /* background_white.png */; };
+		576CF7F317CDA0D7005D45CD /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E817CDA0D6005D45CD /* background_1.png */; };
+		576CF7F617CDAFF5005D45CD /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF7F517CDAFF4005D45CD /* StartViewController.m */; };
+		57926E9317C5FB9A0065D111 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9217C5FB9A0065D111 /* UIKit.framework */; };
+		57926E9517C5FB9A0065D111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9417C5FB9A0065D111 /* Foundation.framework */; };
+		57926E9717C5FB9A0065D111 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9617C5FB9A0065D111 /* CoreGraphics.framework */; };
+		57926E9D17C5FB9A0065D111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57926E9B17C5FB9A0065D111 /* InfoPlist.strings */; };
+		57926E9F17C5FB9A0065D111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926E9E17C5FB9A0065D111 /* main.m */; };
+		57926EA317C5FB9A0065D111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EA217C5FB9A0065D111 /* AppDelegate.m */; };
+		57926EA517C5FB9A0065D111 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EA417C5FB9A0065D111 /* Default.png */; };
+		57926EA717C5FB9A0065D111 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EA617C5FB9A0065D111 /* Default@2x.png */; };
+		57926EA917C5FB9A0065D111 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EA817C5FB9A0065D111 /* Default-568h@2x.png */; };
+		57926EAF17C5FB9A0065D111 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57926EAD17C5FB9A0065D111 /* ViewController.xib */; };
+		57926EBC17C6143F0065D111 /* UIView+UIView_MyExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */; };
+		57926EBE17C618210065D111 /* shake-icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EBD17C618210065D111 /* shake-icon1.png */; };
+		57926EC017C618300065D111 /* shaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EBF17C618300065D111 /* shaker.png */; };
+		57926EC317C61DCC0065D111 /* ShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC217C61DCC0065D111 /* ShakeViewController.m */; };
+		57926EC617C6243B0065D111 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC517C6243B0065D111 /* RecipeViewController.m */; };
+		57926ECD17C71F360065D111 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926ECC17C71F360065D111 /* ShakingViewController.m */; };
+		57FAD91717C7232300520C34 /* ShakedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD91617C7232300520C34 /* ShakedViewController.m */; };
+		57FAD91C17CB105D00520C34 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD91B17CB105C00520C34 /* NavigationViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		576CF7CB17CB4E10005D45CD /* RecipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewController.h; sourceTree = "<group>"; };
+		576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewController.m; sourceTree = "<group>"; };
+		576CF7D617CC96FF005D45CD /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu2.png; sourceTree = "<group>"; };
+		576CF7D817CCAD34005D45CD /* cocktail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cocktail.plist; sourceTree = "<group>"; };
+		576CF7DA17CD9D79005D45CD /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
+		576CF7DC17CDA09B005D45CD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		576CF7DE17CDA0D5005D45CD /* Glass1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass1.png; sourceTree = "<group>"; };
+		576CF7DF17CDA0D5005D45CD /* Glass4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass4.png; sourceTree = "<group>"; };
+		576CF7E017CDA0D5005D45CD /* Glass3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass3.png; sourceTree = "<group>"; };
+		576CF7E117CDA0D5005D45CD /* Glass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass2.png; sourceTree = "<group>"; };
+		576CF7E217CDA0D5005D45CD /* background_recipe5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_recipe5.png; sourceTree = "<group>"; };
+		576CF7E317CDA0D6005D45CD /* background_recipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_recipe2.png; sourceTree = "<group>"; };
+		576CF7E417CDA0D6005D45CD /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
+		576CF7E517CDA0D6005D45CD /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		576CF7E617CDA0D6005D45CD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		576CF7E717CDA0D6005D45CD /* background_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_white.png; sourceTree = "<group>"; };
+		576CF7E817CDA0D6005D45CD /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
+		576CF7F417CDAFF3005D45CD /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartViewController.h; path = ../StartViewController.h; sourceTree = "<group>"; };
+		576CF7F517CDAFF4005D45CD /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = ../StartViewController.m; sourceTree = "<group>"; };
+		57926E8F17C5FB9A0065D111 /* MoodBlender_noStoryBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodBlender_noStoryBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57926E9217C5FB9A0065D111 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		57926E9417C5FB9A0065D111 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		57926E9617C5FB9A0065D111 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		57926E9A17C5FB9A0065D111 /* MoodBlender_noStoryBoard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoodBlender_noStoryBoard-Info.plist"; sourceTree = "<group>"; };
+		57926E9C17C5FB9A0065D111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		57926E9E17C5FB9A0065D111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		57926EA017C5FB9A0065D111 /* MoodBlender_noStoryBoard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoodBlender_noStoryBoard-Prefix.pch"; sourceTree = "<group>"; };
+		57926EA117C5FB9A0065D111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		57926EA217C5FB9A0065D111 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		57926EA417C5FB9A0065D111 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		57926EA617C5FB9A0065D111 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		57926EA817C5FB9A0065D111 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		57926EAE17C5FB9A0065D111 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		57926EBA17C6143F0065D111 /* UIView+UIView_MyExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIView_MyExtention.h"; sourceTree = "<group>"; };
+		57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIView_MyExtention.m"; sourceTree = "<group>"; };
+		57926EBD17C618210065D111 /* shake-icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shake-icon1.png"; sourceTree = "<group>"; };
+		57926EBF17C618300065D111 /* shaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shaker.png; sourceTree = "<group>"; };
+		57926EC117C61DCC0065D111 /* ShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeViewController.h; sourceTree = "<group>"; };
+		57926EC217C61DCC0065D111 /* ShakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeViewController.m; sourceTree = "<group>"; };
+		57926EC417C6243B0065D111 /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
+		57926EC517C6243B0065D111 /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
+		57926EC717C6F9B50065D111 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		57926ECB17C71F360065D111 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
+		57926ECC17C71F360065D111 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
+		57FAD91517C7232300520C34 /* ShakedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakedViewController.h; sourceTree = "<group>"; };
+		57FAD91617C7232300520C34 /* ShakedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakedViewController.m; sourceTree = "<group>"; };
+		57FAD91A17CB105C00520C34 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		57FAD91B17CB105C00520C34 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		57926E8C17C5FB9A0065D111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57926E9317C5FB9A0065D111 /* UIKit.framework in Frameworks */,
+				57926E9517C5FB9A0065D111 /* Foundation.framework in Frameworks */,
+				57926E9717C5FB9A0065D111 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57926E8617C5FB9A0065D111 = {
+			isa = PBXGroup;
+			children = (
+				57926EC717C6F9B50065D111 /* QuartzCore.framework */,
+				57926E9817C5FB9A0065D111 /* MoodBlender_noStoryBoard */,
+				57926E9117C5FB9A0065D111 /* Frameworks */,
+				57926E9017C5FB9A0065D111 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		57926E9017C5FB9A0065D111 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57926E8F17C5FB9A0065D111 /* MoodBlender_noStoryBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57926E9117C5FB9A0065D111 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57926E9217C5FB9A0065D111 /* UIKit.framework */,
+				57926E9417C5FB9A0065D111 /* Foundation.framework */,
+				57926E9617C5FB9A0065D111 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57926E9817C5FB9A0065D111 /* MoodBlender_noStoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				576CF7F417CDAFF3005D45CD /* StartViewController.h */,
+				576CF7F517CDAFF4005D45CD /* StartViewController.m */,
+				576CF7CB17CB4E10005D45CD /* RecipeTableViewController.h */,
+				576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */,
+				57926EBA17C6143F0065D111 /* UIView+UIView_MyExtention.h */,
+				57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */,
+				57926EA117C5FB9A0065D111 /* AppDelegate.h */,
+				57926EA217C5FB9A0065D111 /* AppDelegate.m */,
+				57FAD91A17CB105C00520C34 /* NavigationViewController.h */,
+				57FAD91B17CB105C00520C34 /* NavigationViewController.m */,
+				57926ECB17C71F360065D111 /* ShakingViewController.h */,
+				57926ECC17C71F360065D111 /* ShakingViewController.m */,
+				57FAD91517C7232300520C34 /* ShakedViewController.h */,
+				57FAD91617C7232300520C34 /* ShakedViewController.m */,
+				57926EC417C6243B0065D111 /* RecipeViewController.h */,
+				57926EC517C6243B0065D111 /* RecipeViewController.m */,
+				57926EC117C61DCC0065D111 /* ShakeViewController.h */,
+				57926EC217C61DCC0065D111 /* ShakeViewController.m */,
+				57926EAD17C5FB9A0065D111 /* ViewController.xib */,
+				57926E9917C5FB9A0065D111 /* Supporting Files */,
+			);
+			path = MoodBlender_noStoryBoard;
+			sourceTree = "<group>";
+		};
+		57926E9917C5FB9A0065D111 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57926E9A17C5FB9A0065D111 /* MoodBlender_noStoryBoard-Info.plist */,
+				576CF7DC17CDA09B005D45CD /* background.png */,
+				57926E9B17C5FB9A0065D111 /* InfoPlist.strings */,
+				576CF7DE17CDA0D5005D45CD /* Glass1.png */,
+				576CF7DF17CDA0D5005D45CD /* Glass4.png */,
+				576CF7E017CDA0D5005D45CD /* Glass3.png */,
+				576CF7E117CDA0D5005D45CD /* Glass2.png */,
+				576CF7E217CDA0D5005D45CD /* background_recipe5.png */,
+				576CF7E317CDA0D6005D45CD /* background_recipe2.png */,
+				576CF7E417CDA0D6005D45CD /* background3.png */,
+				576CF7E517CDA0D6005D45CD /* background2.png */,
+				576CF7E617CDA0D6005D45CD /* background.png */,
+				576CF7E717CDA0D6005D45CD /* background_white.png */,
+				576CF7E817CDA0D6005D45CD /* background_1.png */,
+				576CF7D817CCAD34005D45CD /* cocktail.plist */,
+				57926EBF17C618300065D111 /* shaker.png */,
+				576CF7DA17CD9D79005D45CD /* background_1.png */,
+				576CF7D617CC96FF005D45CD /* menu2.png */,
+				57926EBD17C618210065D111 /* shake-icon1.png */,
+				57926E9E17C5FB9A0065D111 /* main.m */,
+				57926EA017C5FB9A0065D111 /* MoodBlender_noStoryBoard-Prefix.pch */,
+				57926EA417C5FB9A0065D111 /* Default.png */,
+				57926EA617C5FB9A0065D111 /* Default@2x.png */,
+				57926EA817C5FB9A0065D111 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		57926E8E17C5FB9A0065D111 /* MoodBlender_noStoryBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57926EB217C5FB9A0065D111 /* Build configuration list for PBXNativeTarget "MoodBlender_noStoryBoard" */;
+			buildPhases = (
+				57926E8B17C5FB9A0065D111 /* Sources */,
+				57926E8C17C5FB9A0065D111 /* Frameworks */,
+				57926E8D17C5FB9A0065D111 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoodBlender_noStoryBoard;
+			productName = MoodBlender_noStoryBoard;
+			productReference = 57926E8F17C5FB9A0065D111 /* MoodBlender_noStoryBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		57926E8717C5FB9A0065D111 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = neko;
+			};
+			buildConfigurationList = 57926E8A17C5FB9A0065D111 /* Build configuration list for PBXProject "MoodBlender_noStoryBoard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 57926E8617C5FB9A0065D111;
+			productRefGroup = 57926E9017C5FB9A0065D111 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				57926E8E17C5FB9A0065D111 /* MoodBlender_noStoryBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57926E8D17C5FB9A0065D111 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57926E9D17C5FB9A0065D111 /* InfoPlist.strings in Resources */,
+				57926EA517C5FB9A0065D111 /* Default.png in Resources */,
+				57926EA717C5FB9A0065D111 /* Default@2x.png in Resources */,
+				57926EA917C5FB9A0065D111 /* Default-568h@2x.png in Resources */,
+				57926EAF17C5FB9A0065D111 /* ViewController.xib in Resources */,
+				57926EBE17C618210065D111 /* shake-icon1.png in Resources */,
+				57926EC017C618300065D111 /* shaker.png in Resources */,
+				576CF7D717CC96FF005D45CD /* menu2.png in Resources */,
+				576CF7D917CCAD34005D45CD /* cocktail.plist in Resources */,
+				576CF7DB17CD9D79005D45CD /* background_1.png in Resources */,
+				576CF7DD17CDA09B005D45CD /* background.png in Resources */,
+				576CF7E917CDA0D7005D45CD /* Glass1.png in Resources */,
+				576CF7EA17CDA0D7005D45CD /* Glass4.png in Resources */,
+				576CF7EB17CDA0D7005D45CD /* Glass3.png in Resources */,
+				576CF7EC17CDA0D7005D45CD /* Glass2.png in Resources */,
+				576CF7ED17CDA0D7005D45CD /* background_recipe5.png in Resources */,
+				576CF7EE17CDA0D7005D45CD /* background_recipe2.png in Resources */,
+				576CF7EF17CDA0D7005D45CD /* background3.png in Resources */,
+				576CF7F017CDA0D7005D45CD /* background2.png in Resources */,
+				576CF7F117CDA0D7005D45CD /* background.png in Resources */,
+				576CF7F217CDA0D7005D45CD /* background_white.png in Resources */,
+				576CF7F317CDA0D7005D45CD /* background_1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57926E8B17C5FB9A0065D111 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57926E9F17C5FB9A0065D111 /* main.m in Sources */,
+				57926EA317C5FB9A0065D111 /* AppDelegate.m in Sources */,
+				57926EBC17C6143F0065D111 /* UIView+UIView_MyExtention.m in Sources */,
+				57926EC317C61DCC0065D111 /* ShakeViewController.m in Sources */,
+				57926EC617C6243B0065D111 /* RecipeViewController.m in Sources */,
+				57926ECD17C71F360065D111 /* ShakingViewController.m in Sources */,
+				57FAD91717C7232300520C34 /* ShakedViewController.m in Sources */,
+				57FAD91C17CB105D00520C34 /* NavigationViewController.m in Sources */,
+				576CF7CD17CB4E10005D45CD /* RecipeTableViewController.m in Sources */,
+				576CF7F617CDAFF5005D45CD /* StartViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		57926E9B17C5FB9A0065D111 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57926E9C17C5FB9A0065D111 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		57926EAD17C5FB9A0065D111 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57926EAE17C5FB9A0065D111 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		57926EB017C5FB9A0065D111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		57926EB117C5FB9A0065D111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		57926EB317C5FB9A0065D111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoodBlender_noStoryBoard/MoodBlender_noStoryBoard-Prefix.pch";
+				INFOPLIST_FILE = "MoodBlender_noStoryBoard/MoodBlender_noStoryBoard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		57926EB417C5FB9A0065D111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoodBlender_noStoryBoard/MoodBlender_noStoryBoard-Prefix.pch";
+				INFOPLIST_FILE = "MoodBlender_noStoryBoard/MoodBlender_noStoryBoard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		57926E8A17C5FB9A0065D111 /* Build configuration list for PBXProject "MoodBlender_noStoryBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57926EB017C5FB9A0065D111 /* Debug */,
+				57926EB117C5FB9A0065D111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57926EB217C5FB9A0065D111 /* Build configuration list for PBXNativeTarget "MoodBlender_noStoryBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57926EB317C5FB9A0065D111 /* Debug */,
+				57926EB417C5FB9A0065D111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 57926E8717C5FB9A0065D111 /* Project object */;
+}
