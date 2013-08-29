@@ -21,32 +21,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.title = @"StartViewController";
-    
-    //tmp
-    //NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    //NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
-    //[defaults setObject:@"YES" forKey:@"hoge"];
-    //[userDefaults registerDefaults:defaults];
-    //[userDefaults setBool:YES forKey:@"hoge"];
-    //[userDefaults synchronize];
-    //NSLog(@"%d", [userDefaults boolForKey:@"hoge"]);
+    //self.title = @"StartViewController";
     
     //Set background image
-    UIImage *background_image = [UIImage imageNamed:@"background_1.png"];
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
-    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    UIImage *backgroundImage1 = [UIImage imageNamed:@"background.png"];
+    UIImage *backgroundImage2 = [UIImage imageNamed:@"background1.png"];
+    NSArray *backgroundImageArray = [NSArray arrayWithObjects:backgroundImage1, backgroundImage2, nil];
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = background_image;
+    background.image = backgroundImage1;
+    background.animationImages = backgroundImageArray;
+    background.animationDuration = 1.75;
+    [background startAnimating];
+    //CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    //CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    //CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
     
     //Create objects
-    UIImage *recipe_image = [UIImage imageNamed:@"menu2.png"];
-    UIImage *shake_image = [UIImage imageNamed:@"shaker.png"];
+    UIImage *recipeImage = [UIImage imageNamed:@"menu2.png"];
+    UIImage *shakeImage = [UIImage imageNamed:@"shaker.png"];
+    //tmp
+    UIImage *settingImage = [UIImage imageNamed:@"cat50x50.jpeg"];
+    
     UILabel *welcome = [[UILabel alloc] init];
-    UIButton *recipe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+    UIButton *recipe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     UIButton *shaker = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 100)];
+    UIButton *setting = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 90, 50, 50)];
     
     //Set UILabel text
     welcome.text = @"Enjoy your cocktail!";
@@ -55,12 +55,14 @@
     //Set UILabel background color
     welcome.backgroundColor = [UIColor blackColor];
     
-    //Set UILabel font color
+    //Set UILabel font color and style
     welcome.textColor = [UIColor whiteColor];
+    welcome.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
     
     //Set UIButtons image
-    [recipe setImage:recipe_image forState:UIControlStateNormal];
-    [shaker setImage:shake_image forState:UIControlStateNormal];
+    [recipe setImage:recipeImage forState:UIControlStateNormal];
+    [shaker setImage:shakeImage forState:UIControlStateNormal];
+    [setting setImage:settingImage forState:UIControlStateNormal];
     
     //Move objects to center
     welcome.center = self.view.center;
@@ -74,7 +76,7 @@
     recipe.centerX += 70;
     shaker.centerX -= 70;
     
-    //Set UIImage backgroundColor clearly
+    //Set UIImages backgroundColor clearly
     welcome.backgroundColor = [UIColor clearColor];
     recipe.backgroundColor = [UIColor clearColor];
     shaker.backgroundColor = [UIColor clearColor];
@@ -82,6 +84,7 @@
     //Set UIButtons motion
     [recipe addTarget:self action:@selector(recipe:) forControlEvents:UIControlEventTouchUpInside ];
     [shaker addTarget:self action:@selector(shaker:) forControlEvents:UIControlEventTouchUpInside ];
+    [setting addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside ];
     
     //Show objects
     background.origin = CGPointZero;
@@ -89,9 +92,7 @@
     [self.view addSubview:welcome];
     [self.view addSubview:recipe];
     [self.view addSubview:shaker];
-    
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
-    
+    [self.view addSubview:setting];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,27 +102,45 @@
 }
 
 //recipeButton motion
--(void)recipe:(UIButton*)recipe{
+-(void)recipe:(UIButton*)button{
     RecipeTableViewController *nextView = [[RecipeTableViewController alloc] init];
-    nextView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    NavigationViewController *nextNavi = [[NavigationViewController alloc] initWithRootViewController:nextView];
-    
-    //MEMO:NavigationControllerの表示ON/OFF管理, 開発・デバッグ時以外はOFFの予定
-    [nextView.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    [self presentViewController:nextNavi animated:YES completion:^{}];
+    [self pushView:nextView pushViewstyle:kCATransitionFromRight popViewstyle:kCATransitionFromLeft HiddenHome:NO HiddenBack:NO];
 }
 
+
 //shakerButton motion
--(void)shaker:(UIButton*)shaker{
+-(void)shaker:(UIButton*)button{
     ShakeViewController *nextView = [[ShakeViewController alloc] init];
-    nextView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    NavigationViewController *nextNavi = [[NavigationViewController alloc] initWithRootViewController:nextView];
+    [self pushView:nextView pushViewstyle:kCATransitionFromLeft popViewstyle:kCATransitionFromRight HiddenHome:NO HiddenBack:NO];
+}
+
+//settingButton motion
+-(void)setting:(UIButton*)button{
+    SettingTableViewController *nextView = [[SettingTableViewController alloc] init];
+    [self pushView:nextView pushViewstyle:kCATransitionFromTop popViewstyle:kCATransitionFromBottom HiddenHome:NO HiddenBack:NO];
+}
+
+- (void) pushView:(id)nextView
+    pushViewstyle:(NSString *)pushAnimationType
+     popViewstyle:(NSString *)popAnimationType
+       HiddenHome:(BOOL)isHiddenHome
+       HiddenBack:(BOOL)isHiddenBack{
     
-    //MEMO:NavigationControllerの表示ON/OFF管理, 開発・デバッグ時以外はOFFの予定
-    [nextView.navigationController setNavigationBarHidden:YES animated:YES];
+    //Create animation
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.type = kCATransitionPush;
+    transition.subtype = pushAnimationType;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
     
-    [self presentViewController:nextNavi animated:YES completion:^{}];
+    //Move View
+    ParentViewController *nextParent = [[ParentViewController alloc] init];
+    nextParent.viewController = nextView;
+    nextParent.animationType = popAnimationType;
+    nextParent.hiddenBack = isHiddenBack;
+    nextParent.hiddenHome = isHiddenHome;
+    [self.navigationController pushViewController:nextParent animated:NO];
     
 }
 

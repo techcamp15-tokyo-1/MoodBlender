@@ -31,53 +31,62 @@ const int NUMBER_OF_GLASS = 4;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"ShakingViewController";
+    //self.title = @"ShakingViewController";
     
     //init variable
-    ran = rand()%11+5;
-    half_ran = (int)(ran / 2);
-    _count=0;
+    ran = rand() % 5 +5;
+    halfRan = (int)(ran / 2);
+    count=0;
     shake=false;
-    shake_end = NO;
+    shakeEnd = NO;
     
     //Set background image
-    UIImage *background3_image = [UIImage imageNamed:@"background3.png"];
+    UIImage *backgroundImage3 = [UIImage imageNamed:@"background3.png"];
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
     CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
     background = [[UIImageView alloc] initWithFrame:correctFrame];
     background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = background3_image;
+    background.image = backgroundImage3;
     
     //Create objects
-    UIImage *shaker_image = [UIImage imageNamed:@"shaker.png"];
-    UIImage *shake_message_image = [UIImage imageNamed:@"shake_it.png"];
+    UIImage *shakerImage = [UIImage imageNamed:@"shaker.png"];
+    UIImage *shakeMessageImage = [UIImage imageNamed:@"shakeIt_jpg.jpg"];
+    UIImage *tapMessageImage = [UIImage imageNamed:@"tapIt.png"];
     shaker = [UIButton buttonWithType:UIButtonTypeCustom];
-    shake_message = [[UIImageView alloc] initWithImage:shake_message_image];
+    shakeMessage = [[UIImageView alloc] initWithImage:shakeMessageImage];
+    tapMessage = [[UIImageView alloc] initWithImage:tapMessageImage];
     
     //Set UIImageView aspectMode
-    shake_message.contentMode = UIViewContentModeScaleAspectFit;
+    shakeMessage.contentMode = UIViewContentModeScaleAspectFit;
+    tapMessage.contentMode = UIViewContentModeScaleAspectFit;
     
     //Set UIButtons text or image
-    [shaker setBackgroundImage:shaker_image forState:UIControlStateNormal];
+    [shaker setBackgroundImage:shakerImage forState:UIControlStateNormal];
     
     //Set UIButtons background color
     shaker.backgroundColor = [UIColor blackColor];
     
     //Set UIButtons size
     shaker.frame = CGRectMake(0, 0, 150, 240);
-    shake_message.frame = CGRectMake(0, 0,  370, 370);
+    shakeMessage.frame = CGRectMake(0, 0,  370, 370);
+    tapMessage.frame = CGRectMake(0, 0,  370, 370);
     
     //Move objects to center
     shaker.center = self.view.center;
-    shake_message.center = shaker.center;
+    shakeMessage.center = shaker.center;
+    tapMessage.center = shaker.center;
     
     //Move UIButton
     shaker.centerY -= 30;
     
+    //Set 'Tap!' hidden
+    tapMessage.hidden = YES;
+    
     //Set objects backgroundColor clearly
     shaker.backgroundColor = [UIColor clearColor];
-    shake_message.backgroundColor = [UIColor clearColor];
+    shakeMessage.backgroundColor = [UIColor clearColor];
+    tapMessage.backgroundColor = [UIColor clearColor];
     
     //Set UIButtons motion
     [shaker addTarget:self action:@selector(shaker:) forControlEvents:UIControlEventTouchUpInside ];
@@ -85,12 +94,8 @@ const int NUMBER_OF_GLASS = 4;
     //Show objects
     [self.view addSubview:background];
     [self.view addSubview:shaker];
-    [self.view addSubview:shake_message];
-    
-    //self.shaker = [[UIImageView alloc] init];
-    //self.shaker.frame = CGRectMake(0, 0, 100, 150);
-    //self.shaker.image = [UIImage imageNamed:@"6032827610_ebe95a12b2_o.jpg"];
-    //[self.view addSubview:self.shaker];
+    [self.view addSubview:tapMessage];
+    [self.view addSubview:shakeMessage];
     
     //加速度センサーを感知するクラスを生成
     UIAccelerometer *accelerometer = [UIAccelerometer sharedAccelerometer];
@@ -104,19 +109,14 @@ const int NUMBER_OF_GLASS = 4;
     keys = [dictionary allKeys];
     int section = [self keyToIndex:self.baseState UseArray:keys];
     NSArray *cocktailbaseArray = [dictionary objectForKey:self.baseState];
-    int randam_row = rand() % cocktailbaseArray.count;
-    indexPath = [NSIndexPath indexPathForRow:randam_row inSection:section];
+    int randamRow = rand() % cocktailbaseArray.count;
+    indexPath = [NSIndexPath indexPathForRow:randamRow inSection:section];
     
     //レシピを発見したことをUserDefaultsに登録
-    NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
+    NSString *indexPathString = [NSString stringWithFormat:@"%d:%d", indexPath.section, indexPath.row];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:YES forKey:indexPathString];
     [userDefaults synchronize];
-    
-    //tmp
-    NSLog(@"index = %@", indexPathString);
-    NSLog(@"state = %d", [userDefaults boolForKey:indexPathString]);
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,11 +126,13 @@ const int NUMBER_OF_GLASS = 4;
 }
 
 //ShakerButton motion
--(void)shaker:(UIButton*)_shaker{
+-(void)shaker:(UIButton*)button{
     
     //まだshakeが終わってなかったら何もしない
     //tmp
-    //if(!shake_end) return ;
+    //if(!shakeEnd) return ;
+    
+    tapMessage.hidden = YES;
     
     //Create glass image
     //読み込むファイルの名前はGlass(n).pngに統一されているものとする
@@ -138,8 +140,8 @@ const int NUMBER_OF_GLASS = 4;
     for(int i = 1; i <= NUMBER_OF_GLASS; ++i){
         [glasses addObject:[UIImage imageNamed:[NSString stringWithFormat:@"Glass%d.png", i]]];
     }
-    int glass_index = rand() % glasses.count;
-    UIImage *glass_image = [glasses objectAtIndex:glass_index];
+    int glassIndex = rand() % glasses.count;
+    UIImage *glassImage = [glasses objectAtIndex:glassIndex];
     
     //ちょっと見た目汚いけど、ネストしないとアニメーションがうまく同期しません。見苦しくてごめんね。
     //この下の行のanimateWithDuration ... フェードアウトの秒数
@@ -148,7 +150,7 @@ const int NUMBER_OF_GLASS = 4;
                          shaker.alpha = 0.0;
                      }
                      completion:^(BOOL finished){
-                         [shaker setBackgroundImage:glass_image forState:UIControlStateNormal];
+                         [shaker setBackgroundImage:glassImage forState:UIControlStateNormal];
                          
                          //この下の行のanimateWithDuration ... フェードインの秒数
                          [UIView animateWithDuration:2.0
@@ -160,11 +162,23 @@ const int NUMBER_OF_GLASS = 4;
                                               //sleepForTimeInterval ... フェードイン後、グラスが表示される秒数
                                               [NSThread sleepForTimeInterval:0.5];
                                               
-                                              //Move to next
-                                              RecipeViewController *next = [[RecipeViewController alloc] init];
-                                              next.recipe_index = indexPath;
-                                              next.prevView = self.title;
-                                              [self.navigationController pushViewController:next animated:YES];
+                                              //Create and Setting animation pattern
+                                              CATransition *transition = [CATransition animation];
+                                              transition.duration = 0.2;
+                                              transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+                                              transition.type = kCATransitionFade;
+                                              [self.navigationController.view.layer addAnimation:transition forKey:nil];
+                                              
+                                              //Move View
+                                              ParentViewController *nextParent = [[ParentViewController alloc] init];
+                                              RecipeViewController *nextView = [[RecipeViewController alloc] init];
+                                              nextView.recipeIndex = indexPath;
+                                              nextParent.viewController = nextView;
+                                              nextParent.animationType = kCATransitionFromBottom;
+                                              nextParent.hiddenHome = NO;
+                                              nextParent.hiddenBack = YES;
+                                              nextParent.createNewPage = YES;
+                                              [self.navigationController pushViewController:nextParent animated:NO];
                                           }
                           ];
                      }
@@ -178,9 +192,9 @@ const int NUMBER_OF_GLASS = 4;
     
     
     //変更される背景画像
-    UIImage *background2_image = [UIImage imageNamed:@"background2.png"];
-    UIImage *background_image = [UIImage imageNamed:@"background.png"];
-    //background.image = background2_image;
+    UIImage *backgroundImage2 = [UIImage imageNamed:@"background2.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"background.png"];
+    //background.image = backgroundimage2;
     
     //加速度の絶対値
     UIAccelerationValue x = acceleration.x;  // X軸方向の加速度
@@ -195,48 +209,49 @@ const int NUMBER_OF_GLASS = 4;
         
         //tmp
         NSLog(@"in");
-        NSLog(@"%d回", _count);
+        NSLog(@"%d回", count);
         
         //3回以上振ったあとの'shake!'はしつこいので、ラベルを非表示
-        if (_count == 3){
-            shake_message.hidden = YES;
+        if (count == 3){
+            shakeMessage.hidden = YES;
         }
         
         
         //半月表示
-        if(_count == half_ran){
-            background.image = background2_image;
+        if(count == halfRan){
+            background.image = backgroundImage2;
         }
         //満月表示, shake完了
-        else if(_count == ran){
+        else if(count == ran){
             NSLog(@"end");
-            background.image = background_image;
+            background.image = backgroundImage;
         }
         
         //判定
         shake=true;
         //カウント
-        _count++;
+        count++;
         
         //カウントによるアクションif分移動
         //CGPointMake(x座標, y座標)の位置に画像を移動させる 上に移動
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.1 animations:^{
             shaker.center = CGPointMake(shaker.centerX, shaker.frame.size.height/ - (shaker.frame.size.height/2));
         }completion:^(BOOL finished){
             //CGPointMake(x座標, y座標)の位置に画像を移動させる　下に移動
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 shaker.center = CGPointMake(shaker.centerX, shaker.frame.size.height+(shaker.frame.size.height/2));
             }completion:^(BOOL finished){
                 //CGPointMake(x座標, y座標)の位置に画像を移動させる
-                [UIView animateWithDuration:0.3 animations:^{
+                [UIView animateWithDuration:0.1 animations:^{
                     shaker.center = CGPointMake(shaker.frame.size.width, shaker.frame.size.height);
                 }completion:^(BOOL finished){
                     
-                    if(_count == half_ran){
-                        background.image = background2_image;
-                    } else if(_count == ran){
-                        background.image = background_image;
+                    if(count == halfRan){
+                        background.image = backgroundImage2;
+                    } else if(count == ran){
+                        background.image = backgroundImage;
                         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                        tapMessage.hidden = NO;
                         
                     }
                 }];
@@ -247,7 +262,7 @@ const int NUMBER_OF_GLASS = 4;
         shake=false;
     }
     
-    before_point.y = acceleration.y;
+    beforePoint.y = acceleration.y;
 }
 
 - (int)keyToIndex:(NSString *)arrayKey

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParentViewController.h"
+#import "StartViewController.h"
 
 @class ViewController;
 

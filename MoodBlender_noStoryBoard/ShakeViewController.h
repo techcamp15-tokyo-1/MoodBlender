@@ -10,12 +10,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ShakingViewController.h"
 #import "StartViewController.h"
+#import "ParentViewController.h"
+#import "NavigationViewController.h"
 
 @interface ShakeViewController : UIViewController
 {
     UIButton *gin;
     UIButton *vodka;
     NSString *baseState;
-    UIImageView *tap_message;
+    UIImageView *tapMessage;
 }
 @end

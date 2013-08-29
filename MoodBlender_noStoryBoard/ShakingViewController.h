@@ -13,18 +13,19 @@
 
 @interface ShakingViewController : UIViewController <UIAccelerometerDelegate>
 {
-    int _count, shake;
-    CGPoint before_point;
+    int count, shake;
+    CGPoint beforePoint;
     UIImageView *background;
     int ran;
-    int half_ran;
-    bool shake_end;
+    int halfRan;
+    bool shakeEnd;
     UIButton *shaker;
-    UIImageView *shake_message;
     NSString *path;
     NSDictionary *dictionary;
     NSArray *keys;
     NSIndexPath *indexPath;
+    UIImageView *shakeMessage;
+    UIImageView *tapMessage;
 }
 @property (nonatomic, retain) NSString *baseState;
 - (int)keyToIndex:(NSString *)arrayKey

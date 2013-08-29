@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "ParentViewController.h"
 #import "NavigationViewController.h"
 #import "ShakeViewController.h"
 #import "RecipeTableViewController.h"
-#import "RecipeViewController.h"
+#import "SettingTableViewController.h"
 
 @interface StartViewController : UIViewController
 @end

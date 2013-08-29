@@ -7,12 +7,15 @@
 //
 
 #import "SettingUserInformationViewController.h"
+#import "UIView+UIView_MyExtention.h"
 
 @interface SettingUserInformationViewController ()
 
 @end
 
 @implementation SettingUserInformationViewController
+
+const int SETTING_MARGIN = 20;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,73 +31,93 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //self.title = @"SettingUserInformation";
+    
     //Set background image
-    self.view.backgroundColor = [UIColor blackColor];
-    UIImage *background_image = [UIImage imageNamed:@"background_1.png"];
-    UIImageView *background = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    background.contentMode = UIViewContentModeScaleAspectFit;
-    background.image = background_image;
+    //self.view.backgroundColor = [UIColor blackColor];
+    //UIImage *backgroundImage = [UIImage imageNamed:@"background1.png"];
+    //UIImageView *background = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+    //background.contentMode = UIViewContentModeScaleAspectFit;
+    //background.image = backgroundImage;
+    UIImage *backgroundImage1 = [UIImage imageNamed:@"background.png"];
+    UIImage *backgroundImage2 = [UIImage imageNamed:@"background1.png"];
+    NSArray *backgroundImageArray = [NSArray arrayWithObjects:backgroundImage1, backgroundImage2, nil];
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    background.contentMode = UIViewContentModeScaleAspectFill;
+    background.image = backgroundImage1;
+    background.animationImages = backgroundImageArray;
+    background.animationDuration = 1.75;
+    [background startAnimating];
     
-    // UITextViewのインスタンス化
-    CGRect rect = self.view.bounds;
-    UITextView *textView = [[UITextView alloc]initWithFrame:rect];
-    // テキストの編集を不可にする
-    textView.editable = NO;
-    // テキストのフォントを設定
-    textView.font = [UIFont fontWithName:@"Helvetica" size:14];
-    //　テキストfontclor
-    textView.textColor=[UIColor whiteColor];
-    //背景色透過許可
-    textView.opaque=NO;
-    // テキストの背景色を設定
-    textView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.3f];
-    textView.text = @"\nメールアドレスの入力をしてください。\nカクテル完成時にメッセージの送信やまめ知識などをお届けします。";
-    // UITextFieldのインスタンスを生成
-    CGRect rectbox = CGRectMake(10, 100, 200, 25);
-    UITextField *textField = [[UITextField alloc]initWithFrame:rectbox];
-    // 枠線のスタイルを設定
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    // ラベルのテキストのフォントを設定
-    textField.font = [UIFont fontWithName:@"Helvetica" size:14];
-    // プレースホルダ
-    textField.placeholder = @"メールアドレスを入力してください";
-    // キーボードの種類を設定
-    textField.keyboardType = UIKeyboardTypeDefault;
-    // リターンキーの種類を設定
-    textField.returnKeyType = UIReturnKeyDefault;
-    // 編集中にテキスト消去ボタンを表示
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    //Create objects
+    UITextView *information = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - (SETTING_MARGIN * 2), self.view.frame.size.height / 3)];
+    email = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 200, 25)];
+    UIButton *submit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    // ボタンを作成
-    UIButton *button =
-    [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    // ボタンの位置を設定
-    button.center = CGPointMake(100, 150);
-    // キャプションを設定
-    [button setTitle:@"アドレス登録"
-            forState:UIControlStateNormal];
-    // キャプションに合わせてサイズを設定
-    [button sizeToFit];
-    // ボタンがタップされたときに呼ばれるメソッドを設定
-    [button addTarget:self
-               action:@selector(button_Tapped:)
-     forControlEvents:UIControlEventTouchUpInside];
+    //Set objects text or placeholder
+    information.text = @"\nメールアドレスの入力をしてください。\nカクテル完成時にメッセージの送信やまめ知識などをお届けします。";
+    email.placeholder = @"メールアドレスを入力してください";
+    [submit setTitle:@"アドレス登録" forState:UIControlStateNormal];
     
-    // 背景のインスタンスをビューに追加
+    //Set objects text font
+    information.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    
+    //Set objects background color
+    information.backgroundColor = [UIColor clearColor];
+    
+    //Set objects text color
+    information.textColor=[UIColor whiteColor];
+    
+    //Set objects some style
+    information.editable = NO;
+    information.opaque = NO;
+    email.borderStyle = UITextBorderStyleRoundedRect;
+    email.keyboardType = UIKeyboardTypeEmailAddress;
+    email.returnKeyType = UIReturnKeyDone;
+    email.clearButtonMode = UITextFieldViewModeWhileEditing;
+    email.delegate = self;
+    
+    //Set objects size
+    [submit sizeToFit];
+    
+    //Set objects position center
+    information.center = self.view.center;
+    email.center = self.view.center;
+    submit.center = self.view.center;
+    
+    //Set object position
+    [information setOriginY:information.frame.origin.y - email.frame.size.height - SETTING_MARGIN];
+    [submit setOriginY:submit.frame.origin.y + submit.frame.size.height + SETTING_MARGIN];
+    
+    //set objects motion
+    [submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //Show objects
     [self.view addSubview:background];
-    // UITextViewのインスタンスをビューに追加
-    [self.view addSubview:textView];
-    // UITextFieldのインスタンスをビューに追加
-    [self.view addSubview:textField];
-    // ボタンをビューに追加
-    [self.view addSubview:button];
-    
+    [self.view addSubview:information];
+    [self.view addSubview:email];
+    [self.view addSubview:submit];
 }
 
-- (void)button_Tapped:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+- (BOOL)textFieldShouldReturn:(UITextField*)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)submit:(UIButton*)button{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:email.text forKey:@"emailAdress"];
+    [userDefaults synchronize];
+
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"設定しました"
+                          message:@""
+                          delegate:nil
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"OK",
+                          nil
+    ];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning

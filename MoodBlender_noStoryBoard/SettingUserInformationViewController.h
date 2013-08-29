@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StartViewController.h"
 
-@interface SettingUserInformationViewController : UIViewController
-
+@interface SettingUserInformationViewController : UIViewController <UITextFieldDelegate>
+{
+    UITextField *email;
+}
 @end

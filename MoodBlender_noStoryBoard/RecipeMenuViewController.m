@@ -32,7 +32,7 @@ const int HEIGHT_MARGIN = 30;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @ "RecipeMenuViewController";
+    //self.title = @ "RecipeMenuViewController";
     
     //tmp
     UIButton *amazon = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -57,23 +57,23 @@ const int HEIGHT_MARGIN = 30;
     
     //Set UIButtons potision
     const int LINE_HEIGHT = amazon.frame.size.height;
-    int total_label_width = WIDTH_MARGIN;
-    int total_label_height = self.view.frame.size.height - HEIGHT_MARGIN - LINE_HEIGHT;
+    int totalLabelWidth = WIDTH_MARGIN;
+    int totalLabelHeight = self.view.frame.size.height - HEIGHT_MARGIN - LINE_HEIGHT;
     
     //line 2
-    [camera setOrigin:CGPointMake(total_label_width, total_label_height)];
-    total_label_width += (camera.frame.size.width + WIDTH_MARGIN);
-    [top setOrigin:CGPointMake(total_label_width, total_label_height)];
-    total_label_width = WIDTH_MARGIN;
-    total_label_height -= (HEIGHT_MARGIN + LINE_HEIGHT);
+    [camera setOrigin:CGPointMake(totalLabelWidth, totalLabelHeight)];
+    totalLabelWidth += (camera.frame.size.width + WIDTH_MARGIN);
+    [top setOrigin:CGPointMake(totalLabelWidth, totalLabelHeight)];
+    totalLabelWidth = WIDTH_MARGIN;
+    totalLabelHeight -= (HEIGHT_MARGIN + LINE_HEIGHT);
     
     //line 1
-    [amazon setOrigin:CGPointMake(total_label_width, total_label_height)];
-    total_label_width += (amazon.frame.size.width + WIDTH_MARGIN);
-    [mail setOrigin:CGPointMake(total_label_width, total_label_height)];
-    total_label_width += (mail.frame.size.width + WIDTH_MARGIN);
-    [twitter setOrigin:CGPointMake(total_label_width, total_label_height)];
-    total_label_width += (twitter.frame.size.width + WIDTH_MARGIN);
+    [amazon setOrigin:CGPointMake(totalLabelWidth, totalLabelHeight)];
+    totalLabelWidth += (amazon.frame.size.width + WIDTH_MARGIN);
+    [mail setOrigin:CGPointMake(totalLabelWidth, totalLabelHeight)];
+    totalLabelWidth += (mail.frame.size.width + WIDTH_MARGIN);
+    [twitter setOrigin:CGPointMake(totalLabelWidth, totalLabelHeight)];
+    totalLabelWidth += (twitter.frame.size.width + WIDTH_MARGIN);
     
     //Set UIButtons method
     [amazon addTarget:self action:@selector(amazon:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,7 +111,8 @@ const int HEIGHT_MARGIN = 30;
     
 }
 - (void)top:(UIButton*)button{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //tmp
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

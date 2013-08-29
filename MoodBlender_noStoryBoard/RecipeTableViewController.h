@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RecipeViewController.h"
+#import "NavigationViewController.h"
+#import "ParentViewController.h"
 
 @interface RecipeTableViewController : UITableViewController
 {

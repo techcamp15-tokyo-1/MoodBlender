@@ -28,7 +28,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"NavigationViewController";
+    //self.title = @"NavigationViewController";
+    
 }
 
 - (void)didReceiveMemoryWarning

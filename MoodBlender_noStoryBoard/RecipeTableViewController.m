@@ -7,6 +7,7 @@
 //
 
 #import "RecipeTableViewController.h"
+#import "UIView+UIView_MyExtention.h"
 
 @interface RecipeTableViewController ()
 
@@ -27,24 +28,20 @@
 {
     [super viewDidLoad];
     
-    self.title = @"RecipeTableViewController";
+    //self.title = @"RecipeTableViewController";
     
     //init Dictionarys
     path = [[NSBundle mainBundle] pathForResource:@"cocktail" ofType:@"plist"];
     dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
     keys = [dictionary allKeys];
     
-    //Generate swipeRecognizer(right) and set motion
-    UISwipeGestureRecognizer* swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeRightGesture:)];
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipeRightGesture];
+    //Set background color and separate
+    self.tableView.separatorColor = [UIColor darkGrayColor];
+    [self.tableView setBackgroundColor:[UIColor blackColor]];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    //Set contentInset
+    //self.tableView.contentInset = UIEdgeInsetsMake(50.0, 0, 0, 0);
+    //[self.view setOriginY:100];
     
 }
 
@@ -68,7 +65,7 @@
     
     NSString *key = [keys objectAtIndex:(NSUInteger)(section)];
     NSArray *cocktailbaseArray = [dictionary objectForKey:key];
-    return cocktailbaseArray.count;
+    return cocktailbaseArray.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,29 +75,37 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIdentifier"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.textColor = [UIColor whiteColor];
     }
     
     //init userDefaults
     
-    //UserDefaultのkeyはNSStringでのみの指定であるため、indexPathをNSStringに変換
-    //MEMO:UserDefault実装したらコメントアウト部分使う
-    //NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
-    //userDefaults = [NSUserDefaults standardUserDefaults];
-    //NSMutableDictionary *userDefaultsDefault = [NSMutableDictionary dictionary];
-    //[userDefaultsDefault setObject:@"NO" forKey:indexPathString];
-    //[userDefaults registerDefaults:userDefaultsDefault];
+    NSString *indexPathString = [NSString stringWithFormat:@"%d:%d", indexPath.section, indexPath.row];
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userDefaultsDefault = [NSMutableDictionary dictionary];
+    [userDefaultsDefault setObject:@"NO" forKey:indexPathString];
+    [userDefaults registerDefaults:userDefaultsDefault];
     
-    //BOOL isFinded = [userDefaults boolForKey:indexPathString];
-    //if(isFinded == YES){
-    NSString *key = [keys objectAtIndex:indexPath.section];
+    NSString *key = [keys objectAtIndex:(NSUInteger)(indexPath.section)];
     NSArray *cocktailbaseArray = [dictionary objectForKey:key];
-    NSDictionary *cocktailRecipe = [cocktailbaseArray objectAtIndex:indexPath.row];
+    int maxRow = cocktailbaseArray.count;
     
-    cell.textLabel.text = [cocktailRecipe objectForKey:@"name"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //} else{
-    //    cell.textLabel.text = @"?";
-    //}
+    cell.textLabel.text = @"";
+    BOOL isFinded = [userDefaults boolForKey:indexPathString];
+    if(isFinded == YES){
+        NSString *key = [keys objectAtIndex:indexPath.section];
+        NSArray *cocktailbaseArray = [dictionary objectForKey:key];
+        NSDictionary *cocktailRecipe = [cocktailbaseArray objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = [cocktailRecipe objectForKey:@"name"];
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        
+    } else if(indexPath.row < maxRow){
+        cell.textLabel.text = @"?";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
     
@@ -151,30 +156,43 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     
+    //Create animation
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
     //Get Recipe data
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    RecipeViewController *next = [[RecipeViewController alloc] init];
-    next.recipe_index = indexPath;
-    next.prevView = self.title;
-    [self.navigationController pushViewController:next animated:YES];
+    RecipeViewController *nextView = [[RecipeViewController alloc] init];
+    nextView.recipeIndex = indexPath;
     
+    //Move View
+    ParentViewController *nextParent = [[ParentViewController alloc] init];
+    nextParent.viewController = nextView;
+    nextParent.animationType = kCATransitionFromLeft;
+    nextParent.hiddenHome = NO;
+    nextParent.hiddenBack = NO;
+    [self.navigationController pushViewController:nextParent animated:NO];
     
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView
  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
-    //BOOL isFinded = [userDefaults boolForKey:indexPathString];
-    //if (isFinded){
+    NSString *indexPathString = [NSString stringWithFormat:@"%d:%d", indexPath.section, indexPath.row];
+    BOOL isFinded = [userDefaults boolForKey:indexPathString];
+    if (isFinded){
         return indexPath;
-    //} else{
-    //    return nil;
-    //}
+    } else{
+        return nil;
+    }
 }
 
-//Swipe(right) motion
-- (void)selSwipeRightGesture:(UISwipeGestureRecognizer *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [keys objectAtIndex:section];
 }
+
 @end

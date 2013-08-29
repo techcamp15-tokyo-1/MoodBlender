@@ -15,10 +15,13 @@
 
 @implementation RecipeViewController
 
-const int MARGIN = 20;
-const int LABEL_HEIGHT = MARGIN;
+const int RECIPE_MARGIN = 20;
+const int LABEL_HEIGHT = RECIPE_MARGIN;
 const int FIXED = 2;
-int total_label_height = MARGIN;
+int totalLabelHeight = RECIPE_MARGIN;
+const NSInteger TagAlert1 = 1;
+const NSInteger TagAlert2 = 2;
+NSString *str;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,18 +36,18 @@ int total_label_height = MARGIN;
 {
     [super viewDidLoad];
     
-    self.title = @"RecipeViewController";
+    //self.title = @"RecipeViewController";
     
     //tmp
-    NSString *indexPathString = [NSString stringWithFormat:@"%@", self.recipe_index];
-    NSLog(@"index = %@", indexPathString);
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"state = %d", [userDefaults boolForKey:indexPathString]);
+    //NSString *indexPathString = [NSString stringWithFormat:@"%d:%d", self.recipeIndex.section, self.recipeIndex.row];
+    //NSLog(@"index = %@", indexPathString);
+    //NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"state = %d", [userDefaults boolForKey:indexPathString]);
     
     // Do any additional setup after loading the view.
     
-    //init total_label_height
-    total_label_height = (MARGIN * FIXED);
+    //init totalLabelHeight
+    totalLabelHeight = (RECIPE_MARGIN * FIXED);
     
     //Init Dictionarys
     path = [[NSBundle mainBundle] pathForResource:@"cocktail" ofType:@"plist"];
@@ -52,19 +55,34 @@ int total_label_height = MARGIN;
     keys = [dictionary allKeys];
     
     //Create recipe
-    NSString *key = [keys objectAtIndex:self.recipe_index.section];
+    NSString *key = [keys objectAtIndex:self.recipeIndex.section];
     NSArray *cocktailbaseArray = [dictionary objectForKey:key];
-    NSDictionary *recipe = [cocktailbaseArray objectAtIndex:self.recipe_index.row];
+    NSDictionary *recipe = [cocktailbaseArray objectAtIndex:self.recipeIndex.row];
     
     //Set background image
-    UIImage *background_image = [UIImage imageNamed:@"background_white.png"];
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
-    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    //UIImage *backgroundImage = [UIImage imageNamed:@"backgroundWhite.png"];
+    //CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    //CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    //CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    //UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    //background.contentMode = UIViewContentModeScaleAspectFill;
+    //background.image = backgroundImage;
+    //background.alpha = 0.6;
+    UIImage *backgroundImage1 = [UIImage imageNamed:@"background.png"];
+    UIImage *backgroundImage2 = [UIImage imageNamed:@"background1.png"];
+    NSArray *backgroundImageArray = [NSArray arrayWithObjects:backgroundImage1, backgroundImage2, nil];
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = background_image;
-    background.alpha = 0.6;
+    background.image = backgroundImage1;
+    background.animationImages = backgroundImageArray;
+    background.animationDuration = 1.75;
+    [background startAnimating];
+    
+    //Create and Setting UIButton
+    UIImage *mailImage = [UIImage imageNamed:@"cat50x50.jpeg"];
+    UIButton *mail = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 90, 50, 50)];
+    [mail setImage:mailImage forState:UIControlStateNormal];
+    [mail addTarget:self action:@selector(mail:) forControlEvents:UIControlEventTouchUpInside ];
     
     //Get Recipe array data
     NSArray *materials = [recipe objectForKey:@"materials"];
@@ -81,13 +99,13 @@ int total_label_height = MARGIN;
     name.backgroundColor = [UIColor clearColor];
     name.textColor = [UIColor whiteColor];
     
-    total_label_height += (LABEL_HEIGHT * FIXED);
+    totalLabelHeight += (LABEL_HEIGHT * FIXED);
     
     //Create materials and amounts UILabel
     //materialとamountが、対応しつつ交互に入る
     //materials.count == amounts.countが前提であるため、そうでない場合に配列外参照が起こる
     //とりあえずtrycatchで、アプリが落ちることだけ回避しておく
-    NSMutableArray *materialAndAmount_labels = [NSMutableArray array];
+    NSMutableArray *materialAndAmountLabels = [NSMutableArray array];
     @try{
         for(int i = 0; i < materials.count; ++i){
             //Create UILabels text
@@ -95,22 +113,22 @@ int total_label_height = MARGIN;
             NSString *amount =[amounts objectAtIndex:i];
             
             //Create UILabel
-            UILabel *material_label = [self createRecipeLabel:material];
-            UILabel *amount_label = [self createRecipeLabel:amount];
-            //[amount_label setOriginX:CGFloat(self.view.frame.size.width - amount_label.frame.size.width + MARGIN)];
-            [amount_label setOriginX:(self.view.frame.size.width - amount_label.frame.size.width - MARGIN)];
+            UILabel *materialLabel = [self createRecipeLabel:material];
+            UILabel *amountLabel = [self createRecipeLabel:amount];
+            //[amountLabel setOriginX:CGFloat(self.view.frame.size.width - amountLabel.frame.size.width + MARGIN)];
+            [amountLabel setOriginX:(self.view.frame.size.width - amountLabel.frame.size.width - RECIPE_MARGIN)];
             
             //Set UILabels backgroundColor clearly
-            material_label.backgroundColor = [UIColor clearColor];
-            amount_label.backgroundColor = [UIColor clearColor];
+            materialLabel.backgroundColor = [UIColor clearColor];
+            amountLabel.backgroundColor = [UIColor clearColor];
             
             //Set UILabels textColor
-            material_label.textColor = [UIColor whiteColor];
-            amount_label.textColor = [UIColor whiteColor];
+            materialLabel.textColor = [UIColor whiteColor];
+            amountLabel.textColor = [UIColor whiteColor];
             
             //Add to NSMutableArray
-            [materialAndAmount_labels addObject:material_label];
-            [materialAndAmount_labels addObject:amount_label];
+            [materialAndAmountLabels addObject:materialLabel];
+            [materialAndAmountLabels addObject:amountLabel];
             
         }
     }
@@ -118,77 +136,41 @@ int total_label_height = MARGIN;
         NSLog(@"materialとamountの数が合っていないデータが存在します");
     }
     
-    total_label_height += (LABEL_HEIGHT * FIXED);
+    totalLabelHeight += (LABEL_HEIGHT * FIXED);
     
     //Create ans Setting processes TextView
-    UITextView *process_textView = [[UITextView alloc] initWithFrame:CGRectMake(MARGIN, total_label_height, self.view.frame.size.width - (MARGIN * 2), self .view.frame.size.height - total_label_height - MARGIN)];
-    process_textView.editable = NO;
-    process_textView.font = [UIFont fontWithName:@"Helvetica" size:14];
-    process_textView.backgroundColor = [UIColor whiteColor];
-    [process_textView setOrigin:CGPointMake(0, 0)];
-    [process_textView setOrigin:CGPointMake(MARGIN, total_label_height)];
-    process_textView.backgroundColor = [UIColor clearColor];
-    process_textView.textColor = [UIColor whiteColor];
-    process_textView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    UITextView *processTextView = [[UITextView alloc] initWithFrame:CGRectMake(RECIPE_MARGIN, totalLabelHeight, self.view.frame.size.width - (RECIPE_MARGIN * 2), self .view.frame.size.height - totalLabelHeight - RECIPE_MARGIN)];
+    processTextView.editable = NO;
+    processTextView.font = [UIFont fontWithName:@"Helvetica" size:14];
+    processTextView.backgroundColor = [UIColor whiteColor];
+    [processTextView setOrigin:CGPointMake(0, 0)];
+    [processTextView setOrigin:CGPointMake(RECIPE_MARGIN, totalLabelHeight)];
+    processTextView.backgroundColor = [UIColor clearColor];
+    processTextView.textColor = [UIColor whiteColor];
+    processTextView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
-    process_textView.text = @"";
+    processTextView.text = @"";
     for(int i = 0; i < processes.count; ++i) {
         
         //Create UILabel text and UILabel
         NSString *process = [NSString stringWithFormat:@"%d. %@", i + 1, [processes objectAtIndex:i]];
-        process_textView.text = [process_textView.text stringByAppendingFormat:@"%@\n", process];
+        processTextView.text = [processTextView.text stringByAppendingFormat:@"%@\n", process];
     }
     
     //Show objects
     [self.view addSubview:background];
     [self.view addSubview:name];
-    for(int i = 0; i < materialAndAmount_labels.count; ++i){
-        [self.view addSubview:[materialAndAmount_labels objectAtIndex:i]];
+    for(int i = 0; i < materialAndAmountLabels.count; ++i){
+        [self.view addSubview:[materialAndAmountLabels objectAtIndex:i]];
     }
-    [self.view addSubview:process_textView];
+    [self.view addSubview:processTextView];
+    //tmp
+    [self.view addSubview:mail];
     
     //Flash scroll bar
-    [process_textView flashScrollIndicators];
+    [processTextView flashScrollIndicators];
     
-    //Create swipeRecognizer(up) and set motion
-    UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeUpGesture:)];
-    swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.view addGestureRecognizer:swipeUpGesture];
-    
-    //Create swipeRecognizer(right) and set motion
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeRightGesture:)];
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipeRightGesture];
-    
-    //tmp
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame = CGRectMake(10, 10, 100, 30);
-    [btn setTitle:@"押してね" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(hoge:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:btn];
 }
-
-//tmp
-// ボタンがタッチダウンされた時にhogeメソッドを呼び出す
--(void)hoge:(UIButton*)button{
-    StartViewController *nextView = [[StartViewController alloc] init];
-    nextView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:nextView animated:YES completion:^{}];
-}
-
-//Swipe(right) motion
-- (void)selSwipeRightGesture:(UISwipeGestureRecognizer *)sender {
-    if ([self.prevView isEqual:@"RecipeTableViewController"])
-        [self.navigationController popViewControllerAnimated:YES];
-}
-
-//Swipe(up) motion
-- (void)selSwipeUpGesture:(UISwipeGestureRecognizer *)sender {
-    RecipeMenuViewController *next = [[RecipeMenuViewController alloc] init];
-    next.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    [self presentViewController:next animated:YES completion:^ {}];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -201,14 +183,161 @@ int total_label_height = MARGIN;
 - (UILabel*)createRecipeLabel:(NSString*)text{
     UILabel *label= [[UILabel alloc] init];
     label.text = text;
-    label.frame = CGRectMake(MARGIN, total_label_height, self.view.frame.size.width - (MARGIN * 2), 50);
+    label.frame = CGRectMake(RECIPE_MARGIN, totalLabelHeight, self.view.frame.size.width - (RECIPE_MARGIN * 2), 50);
     label.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.numberOfLines = 0;
     [label sizeToFit];
-    total_label_height += label.frame.size.height;
+    totalLabelHeight += label.frame.size.height;
     
     return label;
 }
+
+- (void)mail:(UIButton*)button{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"今の気持ちを入力しよう♡"
+                              message:@" "
+                              delegate:self
+                              cancelButtonTitle:@"何も言いたくない"
+                              otherButtonTitles:@"酔いたいの♡",@"作ってるとこかっこいいね",@"その他に言いたい！",nil
+
+                              ];
+    alertView.tag=TagAlert1;
+    [alertView show];
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView.tag==TagAlert1) {
+        switch (buttonIndex) {
+            case 1: // Button1が押されたとき
+                NSLog(@"Button1");
+                str=@"酔いたいの♡";
+                break;
+                
+                
+            case 2: // Button2が押されたとき
+                NSLog(@"Button2");
+                str=@"作ってるところかっこいいね";
+                break;
+                
+            case 3: // Button2が押されたとき
+                NSLog(@"Button3");
+                
+                break;
+                
+            default: // キャンセルが押されたとき
+                NSLog(@"Cancel");
+                break;
+        }
+        UIAlertView *alertView2;
+        NSString *aStr = [NSString stringWithFormat:@"選択したのは「%@」でいいでしょうか？",str];
+        if(buttonIndex==1||buttonIndex==2){
+            alertView2 = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:aStr delegate:self
+                          cancelButtonTitle:@"やっぱりなし！"
+                          otherButtonTitles:@"OK！",nil
+                          ];
+            alertView2.tag=TagAlert2;
+            [alertView2 show];
+        }else if (buttonIndex==3){
+            alertView2 = [[UIAlertView alloc]
+                          initWithTitle:@"すきなことを書いてね"
+                          message:@" " delegate:self
+                          cancelButtonTitle:@"やっぱりなし！"
+                          otherButtonTitles:@"OK！",nil
+                          ];
+            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 45, 260, 25)];
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+            textField.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
+            textField.textColor = [UIColor grayColor];
+            textField.minimumFontSize = 8;
+            textField.placeholder = @"自由に入力できるよ";
+            textField.adjustsFontSizeToFitWidth = YES;
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            [alertView2 addSubview:textField];
+            alertView2.tag=TagAlert2;
+            [alertView2 show];
+            
+        }
+    }else if (alertView.tag==TagAlert2){
+        switch (buttonIndex) {
+            case 1: { // Button1が押されたとき
+                UITextField *textField = nil;
+                for(UIView *view in alertView.subviews) {
+                    if(![view isKindOfClass:[UITextField class]])
+                        continue;
+                    textField = (UITextField *)view;
+                    break;
+                }
+                str=textField.text;
+                [self CreateMail];
+                break;
+            }
+        }
+    }
+}
+
+//メールの作成
+-(void) CreateMail {
+    
+    MFMailComposeViewController *mailcompose = [[MFMailComposeViewController alloc] init];
+    mailcompose.delegate = self;
+    
+    //各設定（設定しない場合空欄となるだけです）
+    //メール本文の設定
+    [mailcompose setMessageBody:str isHTML:NO];
+    
+    //題名の設定
+    [mailcompose setSubject:@"Bar:MoodBlender"];
+    
+    //宛先の設定
+    [mailcompose setToRecipients:[NSArray arrayWithObjects:@"aaa@yyy.zzz", nil]];
+    
+    //メール送信用のモーダルビューの表示
+    [self presentViewController:mailcompose animated:YES completion:nil];
+    
+}
+
+
+//メール送信処理完了時の処理（あった方が無難）
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error {
+    
+    switch (result){
+        case MFMailComposeResultCancelled:  //キャンセル
+            break;
+        case MFMailComposeResultSaved:      //保存
+            break;
+        case MFMailComposeResultSent:       //送信成功
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"送信しました"
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"OK", nil];
+            [alert show];
+            break;
+        }
+        case MFMailComposeResultFailed:     //送信失敗
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"送信が失敗しました"
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"OK", nil];
+            [alert show];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 @end

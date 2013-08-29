@@ -7,18 +7,33 @@
 //
 
 #import "AppDelegate.h"
-#import "StartViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    StartViewController *rootViewController = [[StartViewController alloc] init];
-    [self.window setRootViewController:rootViewController];
-    [self.window makeKeyAndVisible];
-    return YES;
+    ParentViewController *rootViewController = [[ParentViewController alloc] init];
+    StartViewController *firstViewController = [[StartViewController alloc] init];
+    rootViewController.viewController = firstViewController;
+    NavigationViewController *navigation = [[NavigationViewController alloc] initWithRootViewController:rootViewController];
     
+    //Create animation
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [navigation.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    rootViewController.hiddenBack = YES;
+    rootViewController.hiddenHome = YES;
+    
+    [rootViewController.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.window setRootViewController:navigation];
+    [self.window makeKeyAndVisible];
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
