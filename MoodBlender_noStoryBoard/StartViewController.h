@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
+#import "ShakeViewController.h"
+#import "RecipeTableViewController.h"
+#import "RecipeViewController.h"
 
 @interface StartViewController : UIViewController
 @end

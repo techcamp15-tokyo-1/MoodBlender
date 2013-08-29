@@ -12,10 +12,6 @@
 		576CF7D917CCAD34005D45CD /* cocktail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7D817CCAD34005D45CD /* cocktail.plist */; };
 		576CF7DB17CD9D79005D45CD /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DA17CD9D79005D45CD /* background_1.png */; };
 		576CF7DD17CDA09B005D45CD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DC17CDA09B005D45CD /* background.png */; };
-		576CF7E917CDA0D7005D45CD /* Glass1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DE17CDA0D5005D45CD /* Glass1.png */; };
-		576CF7EA17CDA0D7005D45CD /* Glass4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7DF17CDA0D5005D45CD /* Glass4.png */; };
-		576CF7EB17CDA0D7005D45CD /* Glass3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E017CDA0D5005D45CD /* Glass3.png */; };
-		576CF7EC17CDA0D7005D45CD /* Glass2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E117CDA0D5005D45CD /* Glass2.png */; };
 		576CF7ED17CDA0D7005D45CD /* background_recipe5.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E217CDA0D5005D45CD /* background_recipe5.png */; };
 		576CF7EE17CDA0D7005D45CD /* background_recipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E317CDA0D6005D45CD /* background_recipe2.png */; };
 		576CF7EF17CDA0D7005D45CD /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E417CDA0D6005D45CD /* background3.png */; };
@@ -23,7 +19,19 @@
 		576CF7F117CDA0D7005D45CD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E617CDA0D6005D45CD /* background.png */; };
 		576CF7F217CDA0D7005D45CD /* background_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E717CDA0D6005D45CD /* background_white.png */; };
 		576CF7F317CDA0D7005D45CD /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF7E817CDA0D6005D45CD /* background_1.png */; };
-		576CF7F617CDAFF5005D45CD /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF7F517CDAFF4005D45CD /* StartViewController.m */; };
+		576CF80217CDC1F4005D45CD /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF80117CDC1F4005D45CD /* StartViewController.m */; };
+		576CF80417CDC2D8005D45CD /* shaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80317CDC2D8005D45CD /* shaker.png */; };
+		576CF80617CDDC4F005D45CD /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80517CDDC4E005D45CD /* clear.png */; };
+		576CF80C17CDF9F4005D45CD /* Glass1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80717CDF9EA005D45CD /* Glass1.png */; };
+		576CF80D17CDF9F4005D45CD /* Glass2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80817CDF9EB005D45CD /* Glass2.png */; };
+		576CF80E17CDF9F4005D45CD /* Glass3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80917CDF9EC005D45CD /* Glass3.png */; };
+		576CF80F17CDF9F4005D45CD /* Glass4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80A17CDF9EE005D45CD /* Glass4.png */; };
+		576CF81417CDFF80005D45CD /* shake_it.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF81317CDFF7F005D45CD /* shake_it.png */; };
+		576CF81B17CE117B005D45CD /* tap_it.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF81A17CE117A005D45CD /* tap_it.png */; };
+		576CF81C17CECFD1005D45CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926EC717C6F9B50065D111 /* QuartzCore.framework */; };
+		576CF81F17CEE337005D45CD /* RecipeMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */; };
+		576CF82217CEFF46005D45CD /* SettingUserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF82117CEFF45005D45CD /* SettingUserInformationViewController.m */; };
+		576CF82417CF00EF005D45CD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576CF82317CF00EF005D45CD /* AudioToolbox.framework */; };
 		57926E9317C5FB9A0065D111 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9217C5FB9A0065D111 /* UIKit.framework */; };
 		57926E9517C5FB9A0065D111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9417C5FB9A0065D111 /* Foundation.framework */; };
 		57926E9717C5FB9A0065D111 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9617C5FB9A0065D111 /* CoreGraphics.framework */; };
@@ -36,11 +44,9 @@
 		57926EAF17C5FB9A0065D111 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57926EAD17C5FB9A0065D111 /* ViewController.xib */; };
 		57926EBC17C6143F0065D111 /* UIView+UIView_MyExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */; };
 		57926EBE17C618210065D111 /* shake-icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EBD17C618210065D111 /* shake-icon1.png */; };
-		57926EC017C618300065D111 /* shaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 57926EBF17C618300065D111 /* shaker.png */; };
 		57926EC317C61DCC0065D111 /* ShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC217C61DCC0065D111 /* ShakeViewController.m */; };
 		57926EC617C6243B0065D111 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC517C6243B0065D111 /* RecipeViewController.m */; };
 		57926ECD17C71F360065D111 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926ECC17C71F360065D111 /* ShakingViewController.m */; };
-		57FAD91717C7232300520C34 /* ShakedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD91617C7232300520C34 /* ShakedViewController.m */; };
 		57FAD91C17CB105D00520C34 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD91B17CB105C00520C34 /* NavigationViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -51,10 +57,6 @@
 		576CF7D817CCAD34005D45CD /* cocktail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cocktail.plist; sourceTree = "<group>"; };
 		576CF7DA17CD9D79005D45CD /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
 		576CF7DC17CDA09B005D45CD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		576CF7DE17CDA0D5005D45CD /* Glass1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass1.png; sourceTree = "<group>"; };
-		576CF7DF17CDA0D5005D45CD /* Glass4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass4.png; sourceTree = "<group>"; };
-		576CF7E017CDA0D5005D45CD /* Glass3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass3.png; sourceTree = "<group>"; };
-		576CF7E117CDA0D5005D45CD /* Glass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass2.png; sourceTree = "<group>"; };
 		576CF7E217CDA0D5005D45CD /* background_recipe5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_recipe5.png; sourceTree = "<group>"; };
 		576CF7E317CDA0D6005D45CD /* background_recipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_recipe2.png; sourceTree = "<group>"; };
 		576CF7E417CDA0D6005D45CD /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
@@ -62,8 +64,21 @@
 		576CF7E617CDA0D6005D45CD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		576CF7E717CDA0D6005D45CD /* background_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_white.png; sourceTree = "<group>"; };
 		576CF7E817CDA0D6005D45CD /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
-		576CF7F417CDAFF3005D45CD /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartViewController.h; path = ../StartViewController.h; sourceTree = "<group>"; };
-		576CF7F517CDAFF4005D45CD /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = ../StartViewController.m; sourceTree = "<group>"; };
+		576CF80017CDC1F4005D45CD /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		576CF80117CDC1F4005D45CD /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		576CF80317CDC2D8005D45CD /* shaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shaker.png; sourceTree = "<group>"; };
+		576CF80517CDDC4E005D45CD /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
+		576CF80717CDF9EA005D45CD /* Glass1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass1.png; sourceTree = "<group>"; };
+		576CF80817CDF9EB005D45CD /* Glass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass2.png; sourceTree = "<group>"; };
+		576CF80917CDF9EC005D45CD /* Glass3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass3.png; sourceTree = "<group>"; };
+		576CF80A17CDF9EE005D45CD /* Glass4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass4.png; sourceTree = "<group>"; };
+		576CF81317CDFF7F005D45CD /* shake_it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_it.png; sourceTree = "<group>"; };
+		576CF81A17CE117A005D45CD /* tap_it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap_it.png; sourceTree = "<group>"; };
+		576CF81D17CEE335005D45CD /* RecipeMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeMenuViewController.h; sourceTree = "<group>"; };
+		576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeMenuViewController.m; sourceTree = "<group>"; };
+		576CF82017CEFF43005D45CD /* SettingUserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingUserInformationViewController.h; sourceTree = "<group>"; };
+		576CF82117CEFF45005D45CD /* SettingUserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingUserInformationViewController.m; sourceTree = "<group>"; };
+		576CF82317CF00EF005D45CD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		57926E8F17C5FB9A0065D111 /* MoodBlender_noStoryBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodBlender_noStoryBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57926E9217C5FB9A0065D111 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57926E9417C5FB9A0065D111 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,7 +96,6 @@
 		57926EBA17C6143F0065D111 /* UIView+UIView_MyExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIView_MyExtention.h"; sourceTree = "<group>"; };
 		57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIView_MyExtention.m"; sourceTree = "<group>"; };
 		57926EBD17C618210065D111 /* shake-icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shake-icon1.png"; sourceTree = "<group>"; };
-		57926EBF17C618300065D111 /* shaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shaker.png; sourceTree = "<group>"; };
 		57926EC117C61DCC0065D111 /* ShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeViewController.h; sourceTree = "<group>"; };
 		57926EC217C61DCC0065D111 /* ShakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeViewController.m; sourceTree = "<group>"; };
 		57926EC417C6243B0065D111 /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
@@ -89,8 +103,6 @@
 		57926EC717C6F9B50065D111 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		57926ECB17C71F360065D111 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		57926ECC17C71F360065D111 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
-		57FAD91517C7232300520C34 /* ShakedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakedViewController.h; sourceTree = "<group>"; };
-		57FAD91617C7232300520C34 /* ShakedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakedViewController.m; sourceTree = "<group>"; };
 		57FAD91A17CB105C00520C34 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		57FAD91B17CB105C00520C34 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576CF82417CF00EF005D45CD /* AudioToolbox.framework in Frameworks */,
+				576CF81C17CECFD1005D45CD /* QuartzCore.framework in Frameworks */,
 				57926E9317C5FB9A0065D111 /* UIKit.framework in Frameworks */,
 				57926E9517C5FB9A0065D111 /* Foundation.framework in Frameworks */,
 				57926E9717C5FB9A0065D111 /* CoreGraphics.framework in Frameworks */,
@@ -112,6 +126,7 @@
 		57926E8617C5FB9A0065D111 = {
 			isa = PBXGroup;
 			children = (
+				576CF82317CF00EF005D45CD /* AudioToolbox.framework */,
 				57926EC717C6F9B50065D111 /* QuartzCore.framework */,
 				57926E9817C5FB9A0065D111 /* MoodBlender_noStoryBoard */,
 				57926E9117C5FB9A0065D111 /* Frameworks */,
@@ -140,24 +155,26 @@
 		57926E9817C5FB9A0065D111 /* MoodBlender_noStoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				576CF7F417CDAFF3005D45CD /* StartViewController.h */,
-				576CF7F517CDAFF4005D45CD /* StartViewController.m */,
-				576CF7CB17CB4E10005D45CD /* RecipeTableViewController.h */,
-				576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */,
 				57926EBA17C6143F0065D111 /* UIView+UIView_MyExtention.h */,
 				57926EBB17C6143F0065D111 /* UIView+UIView_MyExtention.m */,
 				57926EA117C5FB9A0065D111 /* AppDelegate.h */,
 				57926EA217C5FB9A0065D111 /* AppDelegate.m */,
 				57FAD91A17CB105C00520C34 /* NavigationViewController.h */,
 				57FAD91B17CB105C00520C34 /* NavigationViewController.m */,
-				57926ECB17C71F360065D111 /* ShakingViewController.h */,
-				57926ECC17C71F360065D111 /* ShakingViewController.m */,
-				57FAD91517C7232300520C34 /* ShakedViewController.h */,
-				57FAD91617C7232300520C34 /* ShakedViewController.m */,
-				57926EC417C6243B0065D111 /* RecipeViewController.h */,
-				57926EC517C6243B0065D111 /* RecipeViewController.m */,
+				576CF80017CDC1F4005D45CD /* StartViewController.h */,
+				576CF80117CDC1F4005D45CD /* StartViewController.m */,
 				57926EC117C61DCC0065D111 /* ShakeViewController.h */,
 				57926EC217C61DCC0065D111 /* ShakeViewController.m */,
+				57926ECB17C71F360065D111 /* ShakingViewController.h */,
+				57926ECC17C71F360065D111 /* ShakingViewController.m */,
+				576CF7CB17CB4E10005D45CD /* RecipeTableViewController.h */,
+				576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */,
+				57926EC417C6243B0065D111 /* RecipeViewController.h */,
+				57926EC517C6243B0065D111 /* RecipeViewController.m */,
+				576CF81D17CEE335005D45CD /* RecipeMenuViewController.h */,
+				576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */,
+				576CF82017CEFF43005D45CD /* SettingUserInformationViewController.h */,
+				576CF82117CEFF45005D45CD /* SettingUserInformationViewController.m */,
 				57926EAD17C5FB9A0065D111 /* ViewController.xib */,
 				57926E9917C5FB9A0065D111 /* Supporting Files */,
 			);
@@ -169,20 +186,23 @@
 			children = (
 				57926E9A17C5FB9A0065D111 /* MoodBlender_noStoryBoard-Info.plist */,
 				576CF7DC17CDA09B005D45CD /* background.png */,
+				576CF80517CDDC4E005D45CD /* clear.png */,
 				57926E9B17C5FB9A0065D111 /* InfoPlist.strings */,
-				576CF7DE17CDA0D5005D45CD /* Glass1.png */,
-				576CF7DF17CDA0D5005D45CD /* Glass4.png */,
-				576CF7E017CDA0D5005D45CD /* Glass3.png */,
-				576CF7E117CDA0D5005D45CD /* Glass2.png */,
+				576CF80717CDF9EA005D45CD /* Glass1.png */,
+				576CF80817CDF9EB005D45CD /* Glass2.png */,
+				576CF80917CDF9EC005D45CD /* Glass3.png */,
+				576CF81317CDFF7F005D45CD /* shake_it.png */,
+				576CF80A17CDF9EE005D45CD /* Glass4.png */,
+				576CF80317CDC2D8005D45CD /* shaker.png */,
 				576CF7E217CDA0D5005D45CD /* background_recipe5.png */,
 				576CF7E317CDA0D6005D45CD /* background_recipe2.png */,
 				576CF7E417CDA0D6005D45CD /* background3.png */,
+				576CF81A17CE117A005D45CD /* tap_it.png */,
 				576CF7E517CDA0D6005D45CD /* background2.png */,
 				576CF7E617CDA0D6005D45CD /* background.png */,
 				576CF7E717CDA0D6005D45CD /* background_white.png */,
 				576CF7E817CDA0D6005D45CD /* background_1.png */,
 				576CF7D817CCAD34005D45CD /* cocktail.plist */,
-				57926EBF17C618300065D111 /* shaker.png */,
 				576CF7DA17CD9D79005D45CD /* background_1.png */,
 				576CF7D617CC96FF005D45CD /* menu2.png */,
 				57926EBD17C618210065D111 /* shake-icon1.png */,
@@ -252,15 +272,10 @@
 				57926EA917C5FB9A0065D111 /* Default-568h@2x.png in Resources */,
 				57926EAF17C5FB9A0065D111 /* ViewController.xib in Resources */,
 				57926EBE17C618210065D111 /* shake-icon1.png in Resources */,
-				57926EC017C618300065D111 /* shaker.png in Resources */,
 				576CF7D717CC96FF005D45CD /* menu2.png in Resources */,
 				576CF7D917CCAD34005D45CD /* cocktail.plist in Resources */,
 				576CF7DB17CD9D79005D45CD /* background_1.png in Resources */,
 				576CF7DD17CDA09B005D45CD /* background.png in Resources */,
-				576CF7E917CDA0D7005D45CD /* Glass1.png in Resources */,
-				576CF7EA17CDA0D7005D45CD /* Glass4.png in Resources */,
-				576CF7EB17CDA0D7005D45CD /* Glass3.png in Resources */,
-				576CF7EC17CDA0D7005D45CD /* Glass2.png in Resources */,
 				576CF7ED17CDA0D7005D45CD /* background_recipe5.png in Resources */,
 				576CF7EE17CDA0D7005D45CD /* background_recipe2.png in Resources */,
 				576CF7EF17CDA0D7005D45CD /* background3.png in Resources */,
@@ -268,6 +283,14 @@
 				576CF7F117CDA0D7005D45CD /* background.png in Resources */,
 				576CF7F217CDA0D7005D45CD /* background_white.png in Resources */,
 				576CF7F317CDA0D7005D45CD /* background_1.png in Resources */,
+				576CF80417CDC2D8005D45CD /* shaker.png in Resources */,
+				576CF80617CDDC4F005D45CD /* clear.png in Resources */,
+				576CF80C17CDF9F4005D45CD /* Glass1.png in Resources */,
+				576CF80D17CDF9F4005D45CD /* Glass2.png in Resources */,
+				576CF80E17CDF9F4005D45CD /* Glass3.png in Resources */,
+				576CF80F17CDF9F4005D45CD /* Glass4.png in Resources */,
+				576CF81417CDFF80005D45CD /* shake_it.png in Resources */,
+				576CF81B17CE117B005D45CD /* tap_it.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,10 +307,11 @@
 				57926EC317C61DCC0065D111 /* ShakeViewController.m in Sources */,
 				57926EC617C6243B0065D111 /* RecipeViewController.m in Sources */,
 				57926ECD17C71F360065D111 /* ShakingViewController.m in Sources */,
-				57FAD91717C7232300520C34 /* ShakedViewController.m in Sources */,
 				57FAD91C17CB105D00520C34 /* NavigationViewController.m in Sources */,
 				576CF7CD17CB4E10005D45CD /* RecipeTableViewController.m in Sources */,
-				576CF7F617CDAFF5005D45CD /* StartViewController.m in Sources */,
+				576CF80217CDC1F4005D45CD /* StartViewController.m in Sources */,
+				576CF81F17CEE337005D45CD /* RecipeMenuViewController.m in Sources */,
+				576CF82217CEFF46005D45CD /* SettingUserInformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

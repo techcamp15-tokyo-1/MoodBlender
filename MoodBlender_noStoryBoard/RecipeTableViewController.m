@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"RecipeTableViewController";
+    
     //init Dictionarys
     path = [[NSBundle mainBundle] pathForResource:@"cocktail" ofType:@"plist"];
     dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -82,8 +84,8 @@
     
     //UserDefaultのkeyはNSStringでのみの指定であるため、indexPathをNSStringに変換
     //MEMO:UserDefault実装したらコメントアウト部分使う
-    ///NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
-    //NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
+    //userDefaults = [NSUserDefaults standardUserDefaults];
     //NSMutableDictionary *userDefaultsDefault = [NSMutableDictionary dictionary];
     //[userDefaultsDefault setObject:@"NO" forKey:indexPathString];
     //[userDefaults registerDefaults:userDefaultsDefault];
@@ -99,7 +101,6 @@
     //} else{
     //    cell.textLabel.text = @"?";
     //}
-    
     
     return cell;
     
@@ -151,17 +152,25 @@
     // Navigation logic may go here. Create and push another view controller.
     
     //Get Recipe data
-    NSString *key = [keys objectAtIndex:indexPath.section];
-    NSArray *cocktailbaseArray = [dictionary objectForKey:key];
-    NSDictionary *cocktailRecipe = [cocktailbaseArray objectAtIndex:indexPath.row];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RecipeViewController *next = [[RecipeViewController alloc] init];
-    next.title = @"しただよ";
-    next.recipe = cocktailRecipe;
+    next.recipe_index = indexPath;
+    next.prevView = self.title;
     [self.navigationController pushViewController:next animated:YES];
     
     
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView
+ willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSString *indexPathString = [NSString stringWithFormat:@"%@", indexPath];
+    //BOOL isFinded = [userDefaults boolForKey:indexPathString];
+    //if (isFinded){
+        return indexPath;
+    //} else{
+    //    return nil;
+    //}
 }
 
 //Swipe(right) motion

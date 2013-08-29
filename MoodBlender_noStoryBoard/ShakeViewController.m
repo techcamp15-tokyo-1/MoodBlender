@@ -7,8 +7,6 @@
 //
 
 #import "ShakeViewController.h"
-#import "ShakingViewController.h"
-#import "StartViewController.h"
 #import "UIView+UIView_MyExtention.h"
 
 @interface ShakeViewController ()
@@ -31,21 +29,31 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //initialize state
-    state = nil;
+    self.title = @"ShakeViewController";
+    
+    //initialize baseState
+    baseState = nil;
     
     //Set background image
-    self.view.backgroundColor = [UIColor blackColor];
     UIImage *background_image = [UIImage imageNamed:@"background_1.png"];
-    UIImageView *background = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    background.contentMode = UIViewContentModeScaleAspectFit;
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    background.contentMode = UIViewContentModeScaleAspectFill;
     background.image = background_image;
     
     //Create objects
     UIImage *shaker_image = [UIImage imageNamed:@"shaker.png"];
+    UIImage *tap_message_image = [UIImage imageNamed:@"tap_it.png"];
     UIButton *shaker = [UIButton buttonWithType:UIButtonTypeCustom];
     gin = [UIButton buttonWithType:UIButtonTypeCustom];
     vodka = [UIButton buttonWithType:UIButtonTypeCustom];
+    tap_message = [[UIImageView alloc] initWithImage:tap_message_image];
+    
+    //Set UIImageView aspectMode and Hidden
+    tap_message.contentMode = UIViewContentModeScaleAspectFit;
+    tap_message.hidden = YES;
     
     //Set UIButtons text or image
     [gin setTitle:@"gin" forState:UIControlStateNormal];
@@ -60,16 +68,7 @@
     [gin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [vodka setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    //Set UIButtons background color
-    shaker.backgroundColor = [UIColor blackColor];
-    gin.backgroundColor = [UIColor blackColor];
-    vodka.backgroundColor = [UIColor blackColor];
-    
-    //Set UIButtons shadow
-    gin.titleLabel.shadowOffset = CGSizeMake(1, 1);
-    vodka.titleLabel.shadowOffset = CGSizeMake(1, 1);
-    
-    //Set UIButtons size
+    //Set UIButtons and UIImageView size
     shaker.frame = CGRectMake(0, 0, 150, 240);
     [gin sizeToFit];
     [vodka sizeToFit];
@@ -77,6 +76,7 @@
     gin.sizeW += 50;
     vodka.sizeH += 50;
     vodka.sizeW += 50;
+    tap_message.frame = CGRectMake(0, 0,  370, 370);
     
     //Move objects to center
     shaker.center = self.view.center;
@@ -90,10 +90,14 @@
     vodka.centerY += 150;
     vodka.centerX -= 50;
     
-    //Set UIImage backgroundColor clearly
+    //UIImageView 'shake!' move to chaker center
+    tap_message.center = shaker.center;
+    
+    //Set objects backgroundColor clearly
     shaker.backgroundColor = [UIColor clearColor];
     gin.backgroundColor = [UIColor clearColor];
     vodka.backgroundColor = [UIColor clearColor];
+    tap_message.backgroundColor = [UIColor clearColor];
     
     //Set UIButtons motion
     [shaker addTarget:self action:@selector(shaker:) forControlEvents:UIControlEventTouchUpInside ];
@@ -105,6 +109,7 @@
     [self.view addSubview:shaker];
     [self.view addSubview:gin];
     [self.view addSubview:vodka];
+    [self.view addSubview:tap_message];
     
     //Create swipeRecognizer(left) and set motion
     UISwipeGestureRecognizer* swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeLeftGesture:)];
@@ -125,25 +130,41 @@
 
 //ginButton motion
 -(void)shaker:(UIButton*)shaker{
-    if (state != nil) {
-        ShakingViewController *nextView = [[ShakingViewController alloc] init];
-        nextView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nextView animated:YES completion:^{}];
-    }
+    
+    //まだどのボタンも選択してなければ何もしない
+    if (baseState == nil) return ;
+    
+    //Create and Setting animation pattern
+    //MEMO:動きちょっとおかしくて前のようにしたいので、余裕があったら変更
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.4;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    transition.type = kCATransitionFade;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    ShakingViewController *next = [[ShakingViewController alloc] init];
+    next.baseState = baseState;
+    [self.navigationController pushViewController:next animated:YES];
 }
 
 //ginButton motion
 -(void)gin:(UIButton*)tmp{
-    state = @"gin";
+    baseState = @"gin";
     [gin setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [vodka setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    if (tap_message.hidden == YES){
+        tap_message.hidden = NO;
+    }
 }
 
 //vodkaButton motion
 -(void)vodka:(UIButton*)tmp{
-    state = @"vodka";
+    baseState = @"vodka";
     [gin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [vodka setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    if (tap_message.hidden == YES){
+        tap_message.hidden = NO;
+    }
 }
 
 @end

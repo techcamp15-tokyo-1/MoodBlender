@@ -31,10 +31,12 @@
 	// Do any additional setup after loading the view.
     
     //Set background image
-    self.view.backgroundColor = [UIColor blackColor];
-    UIImage *background_image = [UIImage imageNamed:@"background_1.png"];
-    UIImageView *background = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    background.contentMode = UIViewContentModeScaleAspectFit;
+    UIImage *background_image = [UIImage imageNamed:@"background_white.png"];
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    background.contentMode = UIViewContentModeScaleAspectFill;
     background.image = background_image;
     
     //Create objects

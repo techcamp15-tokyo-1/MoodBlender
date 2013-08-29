@@ -14,5 +14,6 @@
     NSString *path;
     NSDictionary *dictionary;
     NSArray *keys;
+    NSUserDefaults *userDefaults;
 }
 @end

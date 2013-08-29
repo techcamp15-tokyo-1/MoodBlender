@@ -7,9 +7,6 @@
 //
 
 #import "StartViewController.h"
-#import "ShakeViewController.h"
-#import "RecipeTableViewController.h"
-#import "RecipeViewController.h"
 #import "UIView+UIView_MyExtention.h"
 
 @interface StartViewController ()
@@ -24,11 +21,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.title = @"StartViewController";
+    
+    //tmp
+    //NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    //[defaults setObject:@"YES" forKey:@"hoge"];
+    //[userDefaults registerDefaults:defaults];
+    //[userDefaults setBool:YES forKey:@"hoge"];
+    //[userDefaults synchronize];
+    //NSLog(@"%d", [userDefaults boolForKey:@"hoge"]);
+    
     //Set background image
-    self.view.backgroundColor = [UIColor blackColor];
     UIImage *background_image = [UIImage imageNamed:@"background_1.png"];
-    UIImageView *background = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    background.contentMode = UIViewContentModeScaleAspectFit;
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    background.contentMode = UIViewContentModeScaleAspectFill;
     background.image = background_image;
     
     //Create objects
@@ -106,7 +116,13 @@
 -(void)shaker:(UIButton*)shaker{
     ShakeViewController *nextView = [[ShakeViewController alloc] init];
     nextView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:nextView animated:YES completion:^{}];
+    NavigationViewController *nextNavi = [[NavigationViewController alloc] initWithRootViewController:nextView];
+    
+    //MEMO:NavigationControllerの表示ON/OFF管理, 開発・デバッグ時以外はOFFの予定
+    [nextView.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self presentViewController:nextNavi animated:YES completion:^{}];
+    
 }
 
 @end

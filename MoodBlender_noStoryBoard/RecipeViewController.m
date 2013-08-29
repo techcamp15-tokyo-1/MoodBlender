@@ -17,9 +17,8 @@
 
 const int MARGIN = 20;
 const int LABEL_HEIGHT = MARGIN;
-const int FIXED = 1;
+const int FIXED = 2;
 int total_label_height = MARGIN;
-//const int LABEL_HEIGHT = 21;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,32 +32,54 @@ int total_label_height = MARGIN;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"RecipeViewController";
+    
+    //tmp
+    NSString *indexPathString = [NSString stringWithFormat:@"%@", self.recipe_index];
+    NSLog(@"index = %@", indexPathString);
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"state = %d", [userDefaults boolForKey:indexPathString]);
+    
     // Do any additional setup after loading the view.
     
     //init total_label_height
-    total_label_height = MARGIN;
+    total_label_height = (MARGIN * FIXED);
+    
+    //Init Dictionarys
+    path = [[NSBundle mainBundle] pathForResource:@"cocktail" ofType:@"plist"];
+    dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    keys = [dictionary allKeys];
+    
+    //Create recipe
+    NSString *key = [keys objectAtIndex:self.recipe_index.section];
+    NSArray *cocktailbaseArray = [dictionary objectForKey:key];
+    NSDictionary *recipe = [cocktailbaseArray objectAtIndex:self.recipe_index.row];
     
     //Set background image
-    //UIImage *background_image = [UIImage imageNamed:@"background.png"];
-    //UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    //background.image = background_image;
-    
-    
-    ////(!!!!!!!!!!tmp!!!!!!!!!)
-    self.view.backgroundColor = [UIColor whiteColor];
+    UIImage *background_image = [UIImage imageNamed:@"background_white.png"];
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
+    background.contentMode = UIViewContentModeScaleAspectFill;
+    background.image = background_image;
+    background.alpha = 0.6;
     
     //Get Recipe array data
-    NSArray *materials = [self.recipe objectForKey:@"materials"];
-    NSArray *amounts = [self.recipe objectForKey:@"amounts"];
-    NSArray *processes = [self.recipe objectForKey:@"processes"];
+    NSArray *materials = [recipe objectForKey:@"materials"];
+    NSArray *amounts = [recipe objectForKey:@"amounts"];
+    NSArray *processes = [recipe objectForKey:@"processes"];
     
     //ここからUILabel生成
     //heightを相対的に指定しているため、表示順に生成しないとずれる
     
     //Create and Setting recipe name text, size, font and position
-    UILabel *name = [self createRecipeLabel:[self.recipe objectForKey:@"name"]];
+    UILabel *name = [self createRecipeLabel:[recipe objectForKey:@"name"]];
     name.sizeW += 50;
     name.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+    name.backgroundColor = [UIColor clearColor];
+    name.textColor = [UIColor whiteColor];
     
     total_label_height += (LABEL_HEIGHT * FIXED);
     
@@ -79,6 +100,14 @@ int total_label_height = MARGIN;
             //[amount_label setOriginX:CGFloat(self.view.frame.size.width - amount_label.frame.size.width + MARGIN)];
             [amount_label setOriginX:(self.view.frame.size.width - amount_label.frame.size.width - MARGIN)];
             
+            //Set UILabels backgroundColor clearly
+            material_label.backgroundColor = [UIColor clearColor];
+            amount_label.backgroundColor = [UIColor clearColor];
+            
+            //Set UILabels textColor
+            material_label.textColor = [UIColor whiteColor];
+            amount_label.textColor = [UIColor whiteColor];
+            
             //Add to NSMutableArray
             [materialAndAmount_labels addObject:material_label];
             [materialAndAmount_labels addObject:amount_label];
@@ -98,6 +127,10 @@ int total_label_height = MARGIN;
     process_textView.backgroundColor = [UIColor whiteColor];
     [process_textView setOrigin:CGPointMake(0, 0)];
     [process_textView setOrigin:CGPointMake(MARGIN, total_label_height)];
+    process_textView.backgroundColor = [UIColor clearColor];
+    process_textView.textColor = [UIColor whiteColor];
+    process_textView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    
     process_textView.text = @"";
     for(int i = 0; i < processes.count; ++i) {
         
@@ -107,7 +140,7 @@ int total_label_height = MARGIN;
     }
     
     //Show objects
-    //[self.view addSubview:background];
+    [self.view addSubview:background];
     [self.view addSubview:name];
     for(int i = 0; i < materialAndAmount_labels.count; ++i){
         [self.view addSubview:[materialAndAmount_labels objectAtIndex:i]];
@@ -117,16 +150,43 @@ int total_label_height = MARGIN;
     //Flash scroll bar
     [process_textView flashScrollIndicators];
     
+    //Create swipeRecognizer(up) and set motion
+    UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeUpGesture:)];
+    swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipeUpGesture];
+    
     //Create swipeRecognizer(right) and set motion
-    UISwipeGestureRecognizer* swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeRightGesture:)];
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(selSwipeRightGesture:)];
     swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRightGesture];
     
+    //tmp
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame = CGRectMake(10, 10, 100, 30);
+    [btn setTitle:@"押してね" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(hoge:) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:btn];
+}
+
+//tmp
+// ボタンがタッチダウンされた時にhogeメソッドを呼び出す
+-(void)hoge:(UIButton*)button{
+    StartViewController *nextView = [[StartViewController alloc] init];
+    nextView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:nextView animated:YES completion:^{}];
 }
 
 //Swipe(right) motion
 - (void)selSwipeRightGesture:(UISwipeGestureRecognizer *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.prevView isEqual:@"RecipeTableViewController"])
+        [self.navigationController popViewControllerAnimated:YES];
+}
+
+//Swipe(up) motion
+- (void)selSwipeUpGesture:(UISwipeGestureRecognizer *)sender {
+    RecipeMenuViewController *next = [[RecipeMenuViewController alloc] init];
+    next.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    [self presentViewController:next animated:YES completion:^ {}];
 }
 
 
@@ -147,9 +207,6 @@ int total_label_height = MARGIN;
     label.numberOfLines = 0;
     [label sizeToFit];
     total_label_height += label.frame.size.height;
-    
-    //tmp
-    label.textColor = [UIColor blackColor];
     
     return label;
 }
