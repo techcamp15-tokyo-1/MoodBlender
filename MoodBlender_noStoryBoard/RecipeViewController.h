@@ -10,18 +10,19 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMessageComposeViewController.h>
 #import "StartViewController.h"
-#import "RecipeMenuViewController.h"
 
 @interface RecipeViewController : UIViewController <MFMailComposeViewControllerDelegate, UINavigationBarDelegate, UITextFieldDelegate>
 {
     NSString *path;
     NSDictionary *dictionary;
     NSArray *keys;
+    NSString *str;
 }
+
 @property (nonatomic, retain) NSIndexPath *recipeIndex;
 - (UILabel *)createRecipeLabel:(NSString *)text;
 @end
 
-@interface MailView : UIViewController <UITextFieldDelegate,MFMailComposeViewControllerDelegate>
+@interface MailView : UIViewController <UITextFieldDelegate, MFMailComposeViewControllerDelegate>
 
 @end

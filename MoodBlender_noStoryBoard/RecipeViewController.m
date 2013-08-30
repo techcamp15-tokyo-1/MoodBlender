@@ -17,11 +17,11 @@
 
 const int RECIPE_MARGIN = 20;
 const int LABEL_HEIGHT = RECIPE_MARGIN;
-const int FIXED = 2;
+const int FIXED = 1;
 int totalLabelHeight = RECIPE_MARGIN;
 const NSInteger TagAlert1 = 1;
 const NSInteger TagAlert2 = 2;
-NSString *str;
+BOOL isFreeText =  NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,26 +60,17 @@ NSString *str;
     NSDictionary *recipe = [cocktailbaseArray objectAtIndex:self.recipeIndex.row];
     
     //Set background image
-    //UIImage *backgroundImage = [UIImage imageNamed:@"backgroundWhite.png"];
-    //CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    //CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    //CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
-    //UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
-    //background.contentMode = UIViewContentModeScaleAspectFill;
-    //background.image = backgroundImage;
-    //background.alpha = 0.6;
-    UIImage *backgroundImage1 = [UIImage imageNamed:@"background.png"];
-    UIImage *backgroundImage2 = [UIImage imageNamed:@"background1.png"];
-    NSArray *backgroundImageArray = [NSArray arrayWithObjects:backgroundImage1, backgroundImage2, nil];
-    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundWhite.png"];
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect correctFrame = CGRectOffset(applicationFrame, 0, -CGRectGetHeight(statusBarFrame));
+    UIImageView *background = [[UIImageView alloc] initWithFrame:correctFrame];
     background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = backgroundImage1;
-    background.animationImages = backgroundImageArray;
-    background.animationDuration = 1.75;
-    [background startAnimating];
+    background.image = backgroundImage;
+    background.alpha = 0.6;
     
     //Create and Setting UIButton
-    UIImage *mailImage = [UIImage imageNamed:@"cat50x50.jpeg"];
+    UIImage *mailImage = [UIImage imageNamed:@"mail.png"];
     UIButton *mail = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 90, 50, 50)];
     [mail setImage:mailImage forState:UIControlStateNormal];
     [mail addTarget:self action:@selector(mail:) forControlEvents:UIControlEventTouchUpInside ];
@@ -94,6 +85,7 @@ NSString *str;
     
     //Create and Setting recipe name text, size, font and position
     UILabel *name = [self createRecipeLabel:[recipe objectForKey:@"name"]];
+    [name setOrigin:CGPointMake(LABEL_HEIGHT, LABEL_HEIGHT)];
     name.sizeW += 50;
     name.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
     name.backgroundColor = [UIColor clearColor];
@@ -115,7 +107,6 @@ NSString *str;
             //Create UILabel
             UILabel *materialLabel = [self createRecipeLabel:material];
             UILabel *amountLabel = [self createRecipeLabel:amount];
-            //[amountLabel setOriginX:CGFloat(self.view.frame.size.width - amountLabel.frame.size.width + MARGIN)];
             [amountLabel setOriginX:(self.view.frame.size.width - amountLabel.frame.size.width - RECIPE_MARGIN)];
             
             //Set UILabels backgroundColor clearly
@@ -139,7 +130,7 @@ NSString *str;
     totalLabelHeight += (LABEL_HEIGHT * FIXED);
     
     //Create ans Setting processes TextView
-    UITextView *processTextView = [[UITextView alloc] initWithFrame:CGRectMake(RECIPE_MARGIN, totalLabelHeight, self.view.frame.size.width - (RECIPE_MARGIN * 2), self .view.frame.size.height - totalLabelHeight - RECIPE_MARGIN)];
+    UITextView *processTextView = [[UITextView alloc] initWithFrame:CGRectMake(RECIPE_MARGIN, totalLabelHeight - (RECIPE_MARGIN * 5), self.view.frame.size.width - (RECIPE_MARGIN * 2), self .view.frame.size.height - totalLabelHeight - (RECIPE_MARGIN * 5))];
     processTextView.editable = NO;
     processTextView.font = [UIFont fontWithName:@"Helvetica" size:14];
     processTextView.backgroundColor = [UIColor whiteColor];
@@ -164,7 +155,6 @@ NSString *str;
         [self.view addSubview:[materialAndAmountLabels objectAtIndex:i]];
     }
     [self.view addSubview:processTextView];
-    //tmp
     [self.view addSubview:mail];
     
     //Flash scroll bar
@@ -200,11 +190,11 @@ NSString *str;
                               delegate:self
                               cancelButtonTitle:@"何も言いたくない"
                               otherButtonTitles:@"酔いたいの♡",@"作ってるとこかっこいいね",@"その他に言いたい！",nil
-
+                              
                               ];
     alertView.tag=TagAlert1;
     [alertView show];
-
+    
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -241,6 +231,7 @@ NSString *str;
                           otherButtonTitles:@"OK！",nil
                           ];
             alertView2.tag=TagAlert2;
+            isFreeText=YES;
             [alertView2 show];
         }else if (buttonIndex==3){
             alertView2 = [[UIAlertView alloc]
@@ -272,8 +263,12 @@ NSString *str;
                     textField = (UITextField *)view;
                     break;
                 }
-                str=textField.text;
-                [self CreateMail];
+                if (isFreeText==NO) {
+                    
+                    str=textField.text;
+                }
+                
+                [self CreateMail:str];
                 break;
             }
         }
@@ -281,10 +276,15 @@ NSString *str;
 }
 
 //メールの作成
--(void) CreateMail {
+-(void) CreateMail:(NSString *) sendStr{
     
     MFMailComposeViewController *mailcompose = [[MFMailComposeViewController alloc] init];
-    mailcompose.delegate = self;
+    //mailcompose.delegate = [self.childViewControllers objectAtIndex:0];
+    mailcompose.delegate = self.parentViewController.navigationController.delegate;
+    
+    //tmp
+    //NSLog(@"%@", self.parentViewController.navigationController.delegate);
+    //NSLog(@"%@", sendStr);
     
     //各設定（設定しない場合空欄となるだけです）
     //メール本文の設定

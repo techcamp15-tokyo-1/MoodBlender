@@ -40,8 +40,7 @@
     //Create objects
     UIImage *recipeImage = [UIImage imageNamed:@"menu2.png"];
     UIImage *shakeImage = [UIImage imageNamed:@"shaker.png"];
-    //tmp
-    UIImage *settingImage = [UIImage imageNamed:@"cat50x50.jpeg"];
+    UIImage *settingImage = [UIImage imageNamed:@"gear.png"];
     
     UILabel *welcome = [[UILabel alloc] init];
     UIButton *recipe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];

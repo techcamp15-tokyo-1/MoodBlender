@@ -27,7 +27,6 @@
 		576CF80E17CDF9F4005D45CD /* Glass3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80917CDF9EC005D45CD /* Glass3.png */; };
 		576CF80F17CDF9F4005D45CD /* Glass4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576CF80A17CDF9EE005D45CD /* Glass4.png */; };
 		576CF81C17CECFD1005D45CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926EC717C6F9B50065D111 /* QuartzCore.framework */; };
-		576CF81F17CEE337005D45CD /* RecipeMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */; };
 		576CF82217CEFF46005D45CD /* SettingUserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CF82117CEFF45005D45CD /* SettingUserInformationViewController.m */; };
 		576CF82417CF00EF005D45CD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576CF82317CF00EF005D45CD /* AudioToolbox.framework */; };
 		57926E9317C5FB9A0065D111 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57926E9217C5FB9A0065D111 /* UIKit.framework */; };
@@ -45,8 +44,12 @@
 		57926EC317C61DCC0065D111 /* ShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC217C61DCC0065D111 /* ShakeViewController.m */; };
 		57926EC617C6243B0065D111 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926EC517C6243B0065D111 /* RecipeViewController.m */; };
 		57926ECD17C71F360065D111 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57926ECC17C71F360065D111 /* ShakingViewController.m */; };
-		57DB25BF17CFDAFE00D663D8 /* shakeIt_jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25BE17CFDAFE00D663D8 /* shakeIt_jpg.jpg */; };
 		57DB25C117CFE9D600D663D8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DB25C017CFE9D600D663D8 /* MessageUI.framework */; };
+		57DB25C317D0213B00D663D8 /* shakeIt.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25C217D0213B00D663D8 /* shakeIt.png */; };
+		57DB25C517D021C700D663D8 /* shakeIt_jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25C417D021C700D663D8 /* shakeIt_jpg.jpg */; };
+		57DB25C717D025B600D663D8 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25C617D025B600D663D8 /* gear.png */; };
+		57DB25C917D025EF00D663D8 /* ShakeIt2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25C817D025EF00D663D8 /* ShakeIt2.png */; };
+		57DB25CB17D0287D00D663D8 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DB25CA17D0287D00D663D8 /* mail.png */; };
 		57E487E917CF27AB006F16D0 /* cat50x50.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 57E487E817CF27AB006F16D0 /* cat50x50.jpeg */; };
 		57E487ED17CF2B5B006F16D0 /* tapIt.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E487EC17CF2B5B006F16D0 /* tapIt.png */; };
 		57E487EF17CF2BF3006F16D0 /* backgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E487EE17CF2BF3006F16D0 /* backgroundWhite.png */; };
@@ -78,8 +81,6 @@
 		576CF80817CDF9EB005D45CD /* Glass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass2.png; sourceTree = "<group>"; };
 		576CF80917CDF9EC005D45CD /* Glass3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass3.png; sourceTree = "<group>"; };
 		576CF80A17CDF9EE005D45CD /* Glass4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass4.png; sourceTree = "<group>"; };
-		576CF81D17CEE335005D45CD /* RecipeMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeMenuViewController.h; sourceTree = "<group>"; };
-		576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeMenuViewController.m; sourceTree = "<group>"; };
 		576CF82017CEFF43005D45CD /* SettingUserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingUserInformationViewController.h; sourceTree = "<group>"; };
 		576CF82117CEFF45005D45CD /* SettingUserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingUserInformationViewController.m; sourceTree = "<group>"; };
 		576CF82317CF00EF005D45CD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -107,8 +108,12 @@
 		57926EC717C6F9B50065D111 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		57926ECB17C71F360065D111 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		57926ECC17C71F360065D111 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
-		57DB25BE17CFDAFE00D663D8 /* shakeIt_jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shakeIt_jpg.jpg; sourceTree = "<group>"; };
 		57DB25C017CFE9D600D663D8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		57DB25C217D0213B00D663D8 /* shakeIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shakeIt.png; sourceTree = "<group>"; };
+		57DB25C417D021C700D663D8 /* shakeIt_jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shakeIt_jpg.jpg; sourceTree = "<group>"; };
+		57DB25C617D025B600D663D8 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		57DB25C817D025EF00D663D8 /* ShakeIt2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShakeIt2.png; sourceTree = "<group>"; };
+		57DB25CA17D0287D00D663D8 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
 		57E487E817CF27AB006F16D0 /* cat50x50.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cat50x50.jpeg; path = ../../cat50x50.jpeg; sourceTree = "<group>"; };
 		57E487EC17CF2B5B006F16D0 /* tapIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tapIt.png; sourceTree = "<group>"; };
 		57E487EE17CF2BF3006F16D0 /* backgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundWhite.png; sourceTree = "<group>"; };
@@ -185,8 +190,6 @@
 				576CF7CC17CB4E10005D45CD /* RecipeTableViewController.m */,
 				57926EC417C6243B0065D111 /* RecipeViewController.h */,
 				57926EC517C6243B0065D111 /* RecipeViewController.m */,
-				576CF81D17CEE335005D45CD /* RecipeMenuViewController.h */,
-				576CF81E17CEE336005D45CD /* RecipeMenuViewController.m */,
 				5733F0F517CF628E00C784CE /* SettingTableViewController.h */,
 				5733F0F617CF628E00C784CE /* SettingTableViewController.m */,
 				576CF82017CEFF43005D45CD /* SettingUserInformationViewController.h */,
@@ -200,20 +203,24 @@
 		57926E9917C5FB9A0065D111 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57DB25CA17D0287D00D663D8 /* mail.png */,
 				57926E9A17C5FB9A0065D111 /* MoodBlender_noStoryBoard-Info.plist */,
 				57926E9B17C5FB9A0065D111 /* InfoPlist.strings */,
 				57E487EE17CF2BF3006F16D0 /* backgroundWhite.png */,
+				57DB25C817D025EF00D663D8 /* ShakeIt2.png */,
 				5761C3F517CFA59800783B7B /* back.png */,
 				5733F0F817CF71FD00C784CE /* home.png */,
 				57E487F017CF2BFA006F16D0 /* background1.png */,
+				57DB25C617D025B600D663D8 /* gear.png */,
 				576CF7E617CDA0D6005D45CD /* background.png */,
 				5733F0ED17CF5B7200C784CE /* naviBar.png */,
+				57DB25C417D021C700D663D8 /* shakeIt_jpg.jpg */,
 				57E487E817CF27AB006F16D0 /* cat50x50.jpeg */,
 				576CF80717CDF9EA005D45CD /* Glass1.png */,
 				576CF80817CDF9EB005D45CD /* Glass2.png */,
-				57DB25BE17CFDAFE00D663D8 /* shakeIt_jpg.jpg */,
 				57E487EC17CF2B5B006F16D0 /* tapIt.png */,
 				576CF80917CDF9EC005D45CD /* Glass3.png */,
+				57DB25C217D0213B00D663D8 /* shakeIt.png */,
 				576CF80A17CDF9EE005D45CD /* Glass4.png */,
 				576CF80317CDC2D8005D45CD /* shaker.png */,
 				576CF7E217CDA0D5005D45CD /* background_recipe5.png */,
@@ -308,7 +315,11 @@
 				5733F0EE17CF5B7200C784CE /* naviBar.png in Resources */,
 				5733F0F917CF71FD00C784CE /* home.png in Resources */,
 				5761C3F617CFA59800783B7B /* back.png in Resources */,
-				57DB25BF17CFDAFE00D663D8 /* shakeIt_jpg.jpg in Resources */,
+				57DB25C317D0213B00D663D8 /* shakeIt.png in Resources */,
+				57DB25C517D021C700D663D8 /* shakeIt_jpg.jpg in Resources */,
+				57DB25C717D025B600D663D8 /* gear.png in Resources */,
+				57DB25C917D025EF00D663D8 /* ShakeIt2.png in Resources */,
+				57DB25CB17D0287D00D663D8 /* mail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +339,6 @@
 				57FAD91C17CB105D00520C34 /* NavigationViewController.m in Sources */,
 				576CF7CD17CB4E10005D45CD /* RecipeTableViewController.m in Sources */,
 				576CF80217CDC1F4005D45CD /* StartViewController.m in Sources */,
-				576CF81F17CEE337005D45CD /* RecipeMenuViewController.m in Sources */,
 				576CF82217CEFF46005D45CD /* SettingUserInformationViewController.m in Sources */,
 				5733F0F717CF628F00C784CE /* SettingTableViewController.m in Sources */,
 				5761C3F917CFAC3D00783B7B /* ParentViewController.m in Sources */,

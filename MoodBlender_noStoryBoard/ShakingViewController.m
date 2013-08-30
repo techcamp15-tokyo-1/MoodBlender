@@ -51,7 +51,7 @@ const int NUMBER_OF_GLASS = 4;
     
     //Create objects
     UIImage *shakerImage = [UIImage imageNamed:@"shaker.png"];
-    UIImage *shakeMessageImage = [UIImage imageNamed:@"shakeIt_jpg.jpg"];
+    UIImage *shakeMessageImage = [UIImage imageNamed:@"ShakeIt2.png"];
     UIImage *tapMessageImage = [UIImage imageNamed:@"tapIt.png"];
     shaker = [UIButton buttonWithType:UIButtonTypeCustom];
     shakeMessage = [[UIImageView alloc] initWithImage:shakeMessageImage];
@@ -130,7 +130,7 @@ const int NUMBER_OF_GLASS = 4;
     
     //まだshakeが終わってなかったら何もしない
     //tmp
-    //if(!shakeEnd) return ;
+    if(!shakeEnd) return ;
     
     tapMessage.hidden = YES;
     
@@ -208,8 +208,8 @@ const int NUMBER_OF_GLASS = 4;
     if((AX+AY+AZ)>3&&shake==false){
         
         //tmp
-        NSLog(@"in");
-        NSLog(@"%d回", count);
+        //NSLog(@"in");
+        //NSLog(@"%d回", count);
         
         //3回以上振ったあとの'shake!'はしつこいので、ラベルを非表示
         if (count == 3){
@@ -223,7 +223,9 @@ const int NUMBER_OF_GLASS = 4;
         }
         //満月表示, shake完了
         else if(count == ran){
-            NSLog(@"end");
+            //tmp
+            //NSLog(@"end");
+            shakeEnd = YES;
             background.image = backgroundImage;
         }
         

@@ -31,8 +31,8 @@ const int HEADER_HEIGHT = 40;
 	// Do any additional setup after loading the view.
     
     //tmp
-    NSLog(@"back = %d", self.hiddenBack);
-    NSLog(@"home = %d", self.hiddenHome);
+    //NSLog(@"back = %d", self.hiddenBack);
+    //NSLog(@"home = %d", self.hiddenHome);
     
     //Create objects
     UIViewController *headerController = [[UIViewController alloc] init];
@@ -66,7 +66,6 @@ const int HEADER_HEIGHT = 40;
     [self addChildViewController:rootView];
     [self addChildViewController:headerController];
     
-    //tmp
     back.hidden = self.hiddenBack;
     home.hidden = self.hiddenHome;
     
