@@ -133,6 +133,7 @@ const int NUMBER_OF_GLASS = 4;
     if(!shakeEnd) return ;
     
     tapMessage.hidden = YES;
+    shakeEnd = NO;
     
     //Create glass image
     //読み込むファイルの名前はGlass(n).pngに統一されているものとする
